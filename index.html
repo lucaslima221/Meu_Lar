@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Lar
+    </title>
+    
+     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    
+    
+    <style>
+    
+   
+   
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Fundo preto */
+            color: white; /* Texto branco */
+            font-family: 'EB Garamond', Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            padding-top: 60px; /* Espaço para o menu fixo */
+        }
+
+        /* Estilo para o menu fixo no topo */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .menu a:hover {
+            background-color: #555;
+        }
+
+        /* Estilo para o conteúdo */
+        .content {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        /* Esconde as abas inicialmente */
+        .tab-content {
+            display: none;
+        }
+
+        /* Exibe a aba ativa */
+        .active-tab {
+            display: block;
+        }
+
+        /* Estilo para as imagens */
+        .image-gallery img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        /* Estilo para as citações */
+        .quote {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            margin-top: 5px;
+            font-size: 0.8em;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Menu de navegação fixo -->
+    <div class="menu" id="menu">
+        <a href="javascript:void(0)" onclick="showTab('meu-mundo')">Meu Mundo</a>
+        <a href="javascript:void(0)" onclick="showTab('meus-pensamentos')">Pensamentos</a>
+        <a href="javascript:void(0)" onclick="showTab('minhas-vivencias')">Minhas Vivências</a>
+    </div>
+
+    <!-- Conteúdo das abas -->
+    <div class="content" id="content">
+        
+        <!-- Aba Meu Mundo -->
+        <div id="meu-mundo" class="tab-content">
+            <div class="image-gallery">
+                <img src="/meuamor1.jpg" alt="Imagem 1">
+                <img src="/meuamor2.jpg" alt="Imagem 2">
+                <img src="meuamor3.jpg" alt="Imagem 3">
+                <img src="meuamor4.jpg" alt="Imagem 4">
+                <img src="meuamor5.jpg" alt="Imagem 5">
+                <img src="meuamor6.jpg" alt="Imagem 6">
+                <img src="meuamor7.jpg" alt="Imagem 7">
+                <img src="meuamor8.jpg" alt="Imagem 8">
+                <img src="/Imagens/meuamor9.jpg" alt="Imagem 9">
+                <img src="/Imagens/meuamor10.jpg" alt="Imagem 10">
+                <!-- Adicione mais imagens aqui -->
+            </div>
+        </div>
+
+        <!-- Aba Meus Pensamentos -->
+        <div id="meus-pensamentos" class="tab-content active-tab">
+            <p class="quote">“Teu amor é como a chama que ilumina o que há de mais escuro em mim.”</p>
+        <p class="author">— Vinicius de Moraes</p>
+
+        <p class="quote">“Não há ninguém, mesmo sem cultura, que não se torne poeta quando o amor toma conta dele.”</p>
+        <p class="author">— Platão</p>
+
+        <p class="quote">“No amor, um mais um é igual a um.”</p>
+        <p class="author">— Jean-Paul Sartre</p>
+
+        <p class="quote">“Tens o perfume das manhãs e o riso dos dias mais belos.”</p>
+        <p class="author">— Mário Quintana</p>
+
+        <p class="quote">“O amor é isso: o que você é para mim, e o que eu sou para você.”</p>
+        <p class="author">— Clarice Lispector</p>
+
+        <p class="quote">“Assim que a luz do teu olhar pousou em mim, todo o universo se iluminou.”</p>
+        <p class="author">— Cecília Meireles</p>
+
+        <p class="quote">“Vivo em você e para você, pois sem você, minha existência é cinza.”</p>
+        <p class="author">— Johann Goethe</p>
+
+        <p class="quote">“Tens meu sorriso, meu silêncio, minha lágrima. Tudo que é meu, te pertence.”</p>
+        <p class="author">— Carlos Drummond de Andrade</p>
+
+        <p class="quote">“O que é verdadeiro nunca se acaba, ele vive para sempre no coração.”</p>
+        <p class="author">— Emily Dickinson</p>
+
+        <p class="quote">"Ainda que eu tivesse o poder de te criar à minha maneira, eu escolheria sempre te amar exatamente como és."</p>
+        <p class="author">— Mukowski</p>
+
+        <p class="quote">"Em cada encontro de olhares, há um universo esperando para acontecer."</p>
+        <p class="author">— Pablo Neruda</p>
+
+        <p class="quote">"Mesmo sem te tocar, sinto-te em cada fibra da minha existência."</p>
+        <p class="author">— Florbela Espanca</p>
+
+        <p class="quote">"É por ti que a minha canção existe; sem ti, o silêncio se faz rei."</p>
+        <p class="author">— Victor Hugo</p>
+
+        <p class="quote">"Quero viver o eterno em um único instante ao teu lado."</p>
+        <p class="author">— John Keats</p>
+
+        <p class="quote">"Sei que te amei antes de te conhecer, pois eras o sonho que eu nunca soube que tinha."</p>
+        <p class="author">— Emily Brontë</p>
+
+        <p class="quote">"Tu és a poesia que habita em minha alma."</p>
+        <p class="author">— Fernando Pessoa</p>
+
+        <p class="quote">"Meu coração é teu, como as estrelas pertencem ao céu."</p>
+        <p class="author">— Rabindranath Tagore</p>
+
+        <p class="quote">"Tu és como a poesia: nunca sei o que me esperas, mas sempre me encantas."</p>
+        <p class="author">— Mário Quintana</p>
+
+        <p class="quote">"Teu sorriso é o meu refúgio, e em teus olhos encontro o universo."</p>
+        <p class="author">— Mário Quintana</p>
+
+        <p class="quote">"Meus olhos brilham ao te ver, como estrelas que caem e iluminam o céu."</p>
+        <p class="author">— Cecília Meireles</p>
+
+        <p class="quote">"O simples fato de te ter ao meu lado já faz o mundo parecer mais bonito."</p>
+        <p class="author">— Pablo Neruda</p>
+
+        <p class="quote">"Te amo não apenas pelo que és, mas pelo que sou quando estou com você."</p>
+        <p class="author">— Elizabeth Barrett Browning</p>
+
+        <p class="quote">"Em teus braços encontro o meu lugar no mundo."</p>
+        <p class="author">— Nicholas Sparks</p>
+
+        <p class="quote">"Cada momento ao teu lado é um pedacinho do paraíso que eu sempre sonhei."</p>
+        <p class="author">— Vinícius de Moraes</p>
+
+        <p class="quote">"Nada no mundo vale mais a pena do que o amor que eu sinto por você."</p>
+        <p class="author">— John Keats</p>
+
+        <p class="quote">"Quando olho nos teus olhos, vejo tudo o que sempre procurei."</p>
+        <p class="author">— Paulo Coelho</p>
+
+        <p class="quote">"Você é minha inspiração para tudo o que faço e sou."</p>
+        <p class="author">— Albert Einstein</p>
+
+        <p class="quote">"Teus beijos são como um bálsamo para minha alma, e o teu abraço é o meu refúgio."</p>
+        <p class="author">— William Shakespeare</p>
+
+        <p class="quote">"Você é meu sol em um dia nublado, meu abrigo em dias de tempestade."</p>
+        <p class="author">— John Green</p>
+
+        <p class="quote">"Te amo em todos os sentidos, em todos os momentos, sem fim."</p>
+        <p class="author">— Sarah Dessen</p>
+
+        <p class="quote">"Eu te amo de uma forma que palavras não conseguem traduzir."</p>
+        <p class="author">— Pablo Neruda</p>
+
+        <p class="quote">"A cada olhar, a cada toque, sinto que estamos mais próximos do infinito."</p>
+        <p class="author">— Antoine de Saint-Exupéry</p>
+
+        <p class="quote">"Você é o pedaço de felicidade que faltava na minha vida."</p>
+        <p class="author">— Emily Brontë</p>
+
+        <p class="quote">"Eu não sabia o que era amor até você chegar."</p>
+        <p class="author">— Victor Hugo</p>
+
+        <p class="quote">"Nosso amor é como um livro: cada página que viramos é um novo capítulo de felicidade."</p>
+        <p class="author">— Ernest Hemingway</p>
+
+        <p class="quote">"Amar você é como respirar: é natural, é essencial, é vida."</p>
+        <p class="author">— Ralph Waldo Emerson</p>
+
+            <!-- Continue com o restante das citações aqui -->
+        </div>
+
+        <!-- Aba Minhas Vivências (ainda a ser preenchida) -->
+        <div id="minhas-vivencias" class="tab-content">
+            <p>Depois da nossa chuva juntos, nunca mais vi um temporal da mesma forma.</p>
+            <p>Te ver cantando é apaixonante, te ver falando de Deus me encanta.</p>
+            <p>Entrar com você em uma loja e ficar 
+                1 hora só reclamando do seu gosto duvidoso para roupa,
+                só de pensar em quantas vezes passei por ela de uma ponta a outra
+                sem nem virar o pescoço, mas com você achei beleza e graça em lugares que 
+                nunca tinham feito sentido pra mim.</p>
+            <p>Podia ser só mais um filme, podia ser só mais um cinema, mas foi a gente se olhando apaixonado enquanto na tela um alienígena comia a cabeça das pessoas.</p>
+      
+      
+        </div>
+        
+    </div>
+
+    <script>
+        // Função para mostrar a aba ativa
+        function showTab(tabName) {
+            // Esconde todas as abas
+            let tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+
+            // Exibe a aba selecionada
+            let activeTab = document.getElementById(tabName);
+            activeTab.classList.add('active-tab');
+        }
+
+        // Função para ajustar a largura das fontes e o layout
+        function adjustLayout() {
+            // Obtém a largura da tela
+            const screenWidth = window.innerWidth;
+
+            // Ajusta o tamanho da fonte do menu baseado na largura da tela
+            const menuLinks = document.querySelectorAll('.menu a');
+            const baseFontSize = 16; // Tamanho base da fonte
+            const adjustedFontSize = baseFontSize * (screenWidth / 1200); // Ajuste proporcional
+            menuLinks.forEach(link => {
+                link.style.fontSize = `${adjustedFontSize}px`;
+            });
+
+            // Ajusta o padding do menu para telas menores
+            const menu = document.getElementById('menu');
+            if (screenWidth < 600) {
+                menu.style.padding = '10px';
+            } else {
+                menu.style.padding = '20px';
+            }
+
+            // Ajusta o conteúdo de texto
+            const content = document.getElementById('content');
+            const adjustedContentWidth = Math.min(screenWidth * 0.8, 800); // Largura máxima de 800px
+            content.style.maxWidth = `${adjustedContentWidth}px`;
+
+            // Ajusta o tamanho das imagens para dispositivos móveis
+            const images = document.querySelectorAll('.image-gallery img');
+            images.forEach(img => {
+                if (screenWidth < 600) {
+                    img.style.maxWidth = '100%'; // Imagens ocupando toda a largura
+                } else {
+                    img.style.maxWidth = '200px'; // Limita a largura das imagens
+                }
+            });
+        }
+
+        // Ajusta o layout ao carregar a página e ao redimensionar a tela
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+    </script>
+
+</body>
+</html>
