@@ -582,6 +582,15 @@ Contigo, até os dias mais comuns se tornam extraordinários, pois és o prisma 
         window.addEventListener('load', adjustLayout);
         window.addEventListener('resize', adjustLayout);
     </script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "5c702593-4470-4140-9127-7d71662a3042",
+    });
+  });
+</script>
 
 </body>
 </html>
