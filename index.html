@@ -31,37 +31,40 @@
             padding-top: 60px; 
         }
 
-        /* Estilo para o menu fixo no topo */
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            text-align: center;
-            padding: 10px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-around;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+  /* Estilo para o menu fixo no topo */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Distribui os itens com espaços entre eles */
+    gap: 5%; /* Espaço entre os itens (ajustável, você pode mudar esse valor) */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+}
 
-        .menu a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            background-color: #444;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-            font-size: 1.2rem;
-        }
+/* Estilo para os links dentro do menu */
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    flex-basis: 22%; /* Define que cada link ocupe 22% da largura disponível */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
 
-        .menu a:hover {
-            background-color: #555;
-            transform: scale(1.1);
-        }
+/* Efeito de hover para os links */
+.menu a:hover {
+    background-color: #555;
+}
+
 
         /* Estilo para o conteúdo */
         .content {
