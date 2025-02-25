@@ -133,11 +133,14 @@
 
     <!-- Menu de navegação fixo -->
     <div class="menu" id="menu">
-        <a href="javascript:void(0)" onclick="showTab('meu-mundo')">Mundo</a>
-        <a href="javascript:void(0)" onclick="showTab('meus-pensamentos')">Pensamentos</a>
-        <a href="javascript:void(0)" onclick="showTab('minhas-vivencias')">Vivências</a>
-        <a href="javascript:void(0)" onclick="showTab('futuro')">❤️</a>
+    <a href="#" onclick="showTab('meu-mundo')">Mundo</a>
+<a href="#" onclick="showTab('meus-pensamentos')">Pensamentos</a>
+<a href="#" onclick="showTab('minhas-vivencias')">Vivências</a>
+<a href="#" onclick="showTab('futuro')">❤️</a>
     </div>
+
+
+
 
     <!-- Div para o áudio, centralizada na parte inferior da tela -->
     <div class="audio-container">
@@ -395,17 +398,22 @@ Contigo, até os dias mais comuns se tornam extraordinários, pois és o prisma 
         </div>
     </div>
 
-    <script>
-        function showTab(tabName) {
-            let tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => {
-                tab.classList.remove('active-tab');
-            });
+<script>
+    function showTab(tabName) {
+        // Esconde todas as abas
+        let tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => {
+            tab.classList.remove('active-tab');  // Remove a classe 'active-tab' de todas
+        });
 
-            let activeTab = document.getElementById(tabName);
-            activeTab.classList.add('active-tab');
+        // Exibe a aba selecionada
+        let activeTab = document.getElementById(tabName);
+        if (activeTab) {
+            activeTab.classList.add('active-tab');  // Adiciona a classe 'active-tab' na aba selecionada
         }
-    </script>
+    }
+</script>
+
 
 </body>
 </html>
