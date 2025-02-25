@@ -24,7 +24,7 @@
             min-height: 100vh;
             text-align: center;
             padding-top: 60px; 
-            position: relative; /* Adicionado para garantir que a centralização funcione */
+            position: relative;
         }
 
         /* Estilo para o menu fixo no topo */
@@ -52,21 +52,19 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             font-size: 0.9em !important; 
-            flex-basis: 22%; /* Garante que cada botão ocupe 22% da largura */
+            flex-basis: 22%; 
             text-align: center;
         }
 
-        /* Ajuste o tamanho da fonte para telas maiores */
         @media (min-width: 600px) {
             .menu a {
-                font-size: clamp(1em, 2vw + 1em, 1.5em); /* Redefine o clamp, mas mantendo as proporções */
+                font-size: clamp(1em, 2vw + 1em, 1.5em);
             }
         }
 
-        /* Ajuste o tamanho da fonte para telas grandes */
         @media (min-width: 1024px) {
             .menu a {
-                font-size: clamp(1.2em, 2vw + 1em, 1.8em); /* Fonte ainda maior em telas maiores */
+                font-size: clamp(1.2em, 2vw + 1em, 1.8em);
             }
         }
 
@@ -101,7 +99,6 @@
             margin: 10px 0;
         }
 
-        /* Estilo para citações */
         .quote {
             font-style: italic;
             margin-bottom: 15px;
@@ -112,26 +109,22 @@
             font-size: 0.8em;
         }
 
-        /* Adicionando o comportamento de carregamento lazy para imagens */
-        img {
-            loading: lazy;
-        }
-
-        /* Centralizando o botão de áudio */
+        /* Estilos para o áudio */
         .audio-container {
-            position: absolute;
-            top: 50%;
+            position: fixed;
+            bottom: 20px; /* Coloca o botão perto da parte inferior */
             left: 50%;
-            transform: translate(-50%, -50%); /* Centraliza perfeitamente */
-            z-index: 1001; /* Garantido que o botão fique acima do conteúdo */
-        }
-
-        /* Estilos para o áudio (se necessário) */
-        audio {
-            width: 60%; /* Ajuste conforme necessário */
-            max-width: 400px; /* Limita o tamanho do botão de áudio */
+            transform: translateX(-50%); /* Centraliza horizontalmente */
+            z-index: 1001;
+            width: 60%;
+            max-width: 400px; /* Limita a largura */
             background-color: #333;
             border-radius: 8px;
+            padding: 10px;
+        }
+
+        audio {
+            width: 100%;
         }
 
     </style>
@@ -146,7 +139,7 @@
         <a href="javascript:void(0)" onclick="showTab('futuro')">❤️</a>
     </div>
 
-    <!-- Div para o áudio, centralizada na tela -->
+    <!-- Div para o áudio, centralizada na parte inferior da tela -->
     <div class="audio-container">
         <audio controls autoplay>
             <source src="dezembro.mp3" type="audio/mpeg">
@@ -156,7 +149,6 @@
 
     <!-- Conteúdo das abas -->
     <div class="content" id="content">
-        <!-- Aba Meu Mundo -->
         <div id="meu-mundo" class="tab-content active-tab">
             <div class="image-gallery">
                 <img src="meuamor1.jpg" alt="Imagem 1">
@@ -164,51 +156,30 @@
                 <img src="meuamor3.jpg" alt="Imagem 3">
                 <img src="meuamor4.jpg" alt="Imagem 4">
                 <img src="meuamor5.jpg" alt="Imagem 5">
-                <img src="meuamor6.jpg" alt="Imagem 6">
-                <img src="meuamor7.jpg" alt="Imagem 7">
-                <img src="meuamor8.jpg" alt="Imagem 8">
-                <img src="meuamor9.jpg" alt="Imagem 9">
-                <img src="meuamor10.jpg" alt="Imagem 10">
-                <img src="meuamor11.jpg" alt="Imagem 11">
-                <img src="meuamor12.jpg" alt="Imagem 12">
-                <img src="meuamor13.jpg" alt="Imagem 13">
-                <img src="meuamor14.jpg" alt="Imagem 14">
-                <img src="meuamor15.jpg" alt="Imagem 15">
             </div>
         </div>
 
-        <!-- Aba Meus Pensamentos -->
         <div id="meus-pensamentos" class="tab-content">
             <p class="quote">O que eu sinto por você é laranja! Laranja não é uma cor simples...</p>
             <p class="author">— Desconhecido</p>
-            <p class="quote">"Gosto de ouvir o som da sua voz, ela parece silenciar todo o barulho que carrego em mim."</p>
-            <p class="author">— Desconhecido</p>
         </div>
 
-        <!-- Aba Minhas Vivências -->
         <div id="minhas-vivencias" class="tab-content">
             <p>Esse tem sido meu lugar favorito, feliz ano novo.</p>
-            <p>Sempre soube que seria difícil te deixar ir...</p>
-            <p>Te ver cantando é apaixonante...</p>
-            <p>Entrar com você em uma loja e ficar 1 hora só reclamando...</p>
         </div>
 
-        <!-- Aba Futuro -->
         <div id="futuro" class="tab-content">
             <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."</p>
         </div>
     </div>
 
     <script>
-        // Função para mostrar a aba ativa
         function showTab(tabName) {
-            // Esconde todas as abas
             let tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => {
                 tab.classList.remove('active-tab');
             });
 
-            // Exibe a aba selecionada
             let activeTab = document.getElementById(tabName);
             activeTab.classList.add('active-tab');
         }
