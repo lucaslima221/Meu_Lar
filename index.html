@@ -31,7 +31,7 @@
             padding-top: 60px; 
         }
 
-  /* Estilo para o menu fixo no topo */
+/* Estilo para o menu fixo no topo */
 .menu {
     position: fixed;
     top: 0;
@@ -43,22 +43,37 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: flex;
-    justify-content: space-between; /* Distribui os itens com espaços entre eles */
-    gap: 2%; /* Espaço entre os itens (ajustável, você pode mudar esse valor) */
-    flex-wrap: nowrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+    justify-content: space-around;
+    gap: 8px;
+    flex-wrap: nowrap;
 }
 
-/* Estilo para os links dentro do menu */
+/* Estilo para os links no menu */
 .menu a {
     color: white;
     text-decoration: none;
-    padding: 5px 5px;
+    padding: 10px 15px;
     border-radius: 5px;
-    font-size: 1.9em;
-    flex-basis: 22%; /* Define que cada link ocupe 22% da largura disponível */
-    text-align: center;
     transition: background-color 0.3s ease;
+    font-size: clamp(1em, 2vw + 1em, 1.5em); /* Aplica o clamp para controlar o tamanho da fonte */
+    flex-basis: 22%; /* Garante que cada botão ocupe 22% da largura */
+    text-align: center;
 }
+
+/* Ajuste o tamanho da fonte para telas maiores */
+@media (min-width: 600px) {
+    .menu a {
+        font-size: clamp(1em, 2vw + 1em, 1.5em); /* Redefine o clamp, mas mantendo as proporções */
+    }
+}
+
+/* Ajuste o tamanho da fonte para telas grandes */
+@media (min-width: 1024px) {
+    .menu a {
+        font-size: clamp(1.2em, 2vw + 1em, 1.8em); /* Fonte ainda maior em telas maiores */
+    }
+}
+
 
 /* Efeito de hover para os links */
 .menu a:hover {
