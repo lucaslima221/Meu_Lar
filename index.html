@@ -9,11 +9,6 @@
     <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
-    <audio controls autoplay>
-        <source src="dezembro.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-
     <style>
         /* Estilo global */
         body {
@@ -31,55 +26,53 @@
             padding-top: 60px; 
         }
 
-/* Estilo para o menu fixo no topo */
-.menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    text-align: center;
-    padding: 10px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    gap: 8px;
-    flex-wrap: nowrap;
-}
+        /* Estilo para o menu fixo no topo */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
 
-/* Estilo para os links no menu */
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-size: 0.9em !important; 
-    flex-basis: 22%; /* Garante que cada botão ocupe 22% da largura */
-    text-align: center;
-}
+        /* Estilo para os links no menu */
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em !important; 
+            flex-basis: 22%; /* Garante que cada botão ocupe 22% da largura */
+            text-align: center;
+        }
 
-/* Ajuste o tamanho da fonte para telas maiores */
-@media (min-width: 600px) {
-    .menu a {
-        font-size: clamp(1em, 2vw + 1em, 1.5em); /* Redefine o clamp, mas mantendo as proporções */
-    }
-}
+        /* Ajuste o tamanho da fonte para telas maiores */
+        @media (min-width: 600px) {
+            .menu a {
+                font-size: clamp(1em, 2vw + 1em, 1.5em); /* Redefine o clamp, mas mantendo as proporções */
+            }
+        }
 
-/* Ajuste o tamanho da fonte para telas grandes */
-@media (min-width: 1024px) {
-    .menu a {
-        font-size: clamp(1.2em, 2vw + 1em, 1.8em); /* Fonte ainda maior em telas maiores */
-    }
-}
+        /* Ajuste o tamanho da fonte para telas grandes */
+        @media (min-width: 1024px) {
+            .menu a {
+                font-size: clamp(1.2em, 2vw + 1em, 1.8em); /* Fonte ainda maior em telas maiores */
+            }
+        }
 
-
-/* Efeito de hover para os links */
-.menu a:hover {
-    background-color: #555;
-}
-
+        /* Efeito de hover para os links */
+        .menu a:hover {
+            background-color: #555;
+        }
 
         /* Estilo para o conteúdo */
         .content {
@@ -122,6 +115,24 @@
         img {
             loading: lazy;
         }
+
+        /* Centralizando o botão de áudio */
+        .audio-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+            z-index: 999; /* Garante que o áudio apareça acima de outros elementos */
+        }
+
+        /* Estilos para o áudio (se necessário) */
+        audio {
+            width: 60%; /* Ajuste conforme necessário */
+            max-width: 400px; /* Limita o tamanho do botão de áudio */
+            background-color: #333;
+            border-radius: 8px;
+        }
+
     </style>
 </head>
 <body>
@@ -132,6 +143,14 @@
         <a href="javascript:void(0)" onclick="showTab('meus-pensamentos')">Pensamentos</a>
         <a href="javascript:void(0)" onclick="showTab('minhas-vivencias')">Vivências</a>
         <a href="javascript:void(0)" onclick="showTab('futuro')">❤️</a>
+    </div>
+
+    <!-- Div para o áudio, centralizada na tela -->
+    <div class="audio-container">
+        <audio controls autoplay>
+            <source src="dezembro.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
     </div>
 
     <!-- Conteúdo das abas -->
@@ -192,52 +211,6 @@
             let activeTab = document.getElementById(tabName);
             activeTab.classList.add('active-tab');
         }
-
-        // Função para ajustar a largura das fontes e o layout
-        function adjustLayout() {
-            const screenWidth = window.innerWidth;
-
-            const menuLinks = document.querySelectorAll('.menu a');
-            const baseFontSize = 16;
-            const adjustedFontSize = baseFontSize * Math.min(screenWidth / 1000, 1.5); // Ajusta para que a fonte não cresça demais
-            menuLinks.forEach(link => {
-                link.style.fontSize = `${adjustedFontSize}px`;
-            });
-
-            const menu = document.getElementById('menu');
-            if (screenWidth < 600) {
-                menu.style.padding = '10px';
-            } else {
-                menu.style.padding = '20px';
-            }
-
-            const content = document.getElementById('content');
-            const adjustedContentWidth = Math.min(screenWidth * 0.8, 800);
-            content.style.maxWidth = `${adjustedContentWidth}px`;
-
-            const images = document.querySelectorAll('.image-gallery img');
-            images.forEach(img => {
-                if (screenWidth < 600) {
-                    img.style.maxWidth = '100%';
-                } else {
-                    img.style.maxWidth = '200px';
-                }
-            });
-        }
-
-        // Ajusta o layout ao carregar a página e ao redimensionar a tela
-        window.addEventListener('load', adjustLayout);
-        window.addEventListener('resize', adjustLayout);
-    </script>
-
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
-            await OneSignal.init({
-                appId: "5c702593-4470-4140-9127-7d71662a3042",
-            });
-        });
     </script>
 
 </body>
