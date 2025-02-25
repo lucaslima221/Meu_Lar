@@ -55,7 +55,7 @@
             background-color: #444;
             border-radius: 8px;
             transition: all 0.3s ease-in-out;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
 
         .menu a:hover {
@@ -181,7 +181,7 @@
 
             const menuLinks = document.querySelectorAll('.menu a');
             const baseFontSize = 16;
-            const adjustedFontSize = baseFontSize * (screenWidth / 1200);
+            const adjustedFontSize = baseFontSize * Math.min(screenWidth / 1000, 1.5); // Ajusta para que a fonte não cresça demais
             menuLinks.forEach(link => {
                 link.style.fontSize = `${adjustedFontSize}px`;
             });
