@@ -24,6 +24,7 @@
             min-height: 100vh;
             text-align: center;
             padding-top: 60px; 
+            position: relative; /* Adicionado para garantir que a centralização funcione */
         }
 
         /* Estilo para o menu fixo no topo */
@@ -122,7 +123,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%); /* Centraliza perfeitamente */
-            z-index: 999; /* Garante que o áudio apareça acima de outros elementos */
+            z-index: 1001; /* Garantido que o botão fique acima do conteúdo */
         }
 
         /* Estilos para o áudio (se necessário) */
