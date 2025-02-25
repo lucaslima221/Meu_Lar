@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Lar
-    </title>
-<link rel="icon" type="image/png" sizes="512x512" href="icon2.jpeg">
-<link rel="icon" type="image/png" sizes="512x512" href="icon2.jpeg">
-<link rel="apple-touch-icon" sizes="180x180" href="icon2.jpeg">
-<link rel="manifest" href="/site.webmanifest">
-    
-     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <title>Meu Lar</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="icon2.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon2.jpeg">
+    <link rel="manifest" href="/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
     <audio controls autoplay>
-    <source src="dezembro.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
+        <source src="dezembro.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
     </audio>
-    
+
     <style>
-    
-   
-   
+        /* Estilo global */
         body {
             margin: 0;
             padding: 0;
-            background-color: black; /* Fundo preto */
-            color: white; /* Texto branco */
+            background-color: black;
+            color: white;
             font-family: 'EB Garamond', Georgia, serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: "menu" "content";
             min-height: 100vh;
             text-align: center;
-            padding-top: 60px; /* Espaço para o menu fixo */
+            padding-top: 60px; 
         }
 
         /* Estilo para o menu fixo no topo */
@@ -45,7 +41,7 @@
             text-align: center;
             padding: 10px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+            z-index: 1000;
             display: flex;
             justify-content: space-around;
             gap: 15px;
@@ -55,18 +51,21 @@
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-size: 0.9em !important;
+            padding: 10px 20px;
+            background-color: #444;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
         }
 
         .menu a:hover {
             background-color: #555;
+            transform: scale(1.1);
         }
 
         /* Estilo para o conteúdo */
         .content {
+            grid-area: content;
             width: 100%;
             max-width: 800px;
             padding: 20px;
@@ -74,12 +73,11 @@
             margin: 0 auto;
         }
 
-        /* Esconde as abas inicialmente */
+        /* Estilo das abas */
         .tab-content {
             display: none;
         }
 
-        /* Exibe a aba ativa */
         .active-tab {
             display: block;
         }
@@ -91,7 +89,7 @@
             margin: 10px 0;
         }
 
-        /* Estilo para as citações */
+        /* Estilo para citações */
         .quote {
             font-style: italic;
             margin-bottom: 15px;
@@ -102,6 +100,10 @@
             font-size: 0.8em;
         }
 
+        /* Adicionando o comportamento de carregamento lazy para imagens */
+        img {
+            loading: lazy;
+        }
     </style>
 </head>
 <body>
@@ -116,7 +118,6 @@
 
     <!-- Conteúdo das abas -->
     <div class="content" id="content">
-        
         <!-- Aba Meu Mundo -->
         <div id="meu-mundo" class="tab-content active-tab">
             <div class="image-gallery">
@@ -135,68 +136,29 @@
                 <img src="meuamor13.jpg" alt="Imagem 13">
                 <img src="meuamor14.jpg" alt="Imagem 14">
                 <img src="meuamor15.jpg" alt="Imagem 15">
-                
             </div>
         </div>
 
         <!-- Aba Meus Pensamentos -->
         <div id="meus-pensamentos" class="tab-content">
-            
-
-
-        <p class="quote">O que eu sinto por você é laranja! Laranja não é uma cor
-            simples. Ele é o encontro do vermelho, que grita paixão, e do amarelo, que sussurra alegria. Não é uma escolha óbvia, porque o laranja carrega em si a ousadia de ser misturado, 
-            de ser contraditório, de ser intenso e vibrante sem pedir permissão. O que sinto por você é como laranja: não cabe em definições fáceis, é uma explosão de sentimentos que não têm lógica,
-            mas têm verdade. É aquele tipo de amor que te tira da zona de conforto, que esquenta, incomoda e, ao mesmo tempo, colore tudo ao seu redor.</p>
-        <p class="author">— Desconhecido</p>
-
-        <p class="quote">"Gosto de ouvir o som da sua voz, ela parece silenciar todo o barulho que carrego em mim."</p>
-        <p class="author">— Desconhecido</p>
-
-
- 
-
-            
+            <p class="quote">O que eu sinto por você é laranja! Laranja não é uma cor simples...</p>
+            <p class="author">— Desconhecido</p>
+            <p class="quote">"Gosto de ouvir o som da sua voz, ela parece silenciar todo o barulho que carrego em mim."</p>
+            <p class="author">— Desconhecido</p>
         </div>
 
-        <!-- Aba Minhas Vivências  -->
+        <!-- Aba Minhas Vivências -->
         <div id="minhas-vivencias" class="tab-content">
-
-            <p> esse tem sido meu lugar favorito, feliz ano novo. </p>
-            <p>Sempre soube que seria difícil te deixar ir, e por vezes brinquei sobre isso durante nosso relacionamento,
-            mas acho que nunca acreditei que fosse embora então nunca me preparei pra isso,
-            foi tudo intenso demais pra mim e infelizmente não resisti, eu te amo, como nunca amei e como nunca amarei. saudades.</p>
-            <p>Depois da nossa chuva juntos, nunca mais vi um temporal da mesma forma.</p>
-            <p>Te ver cantando é apaixonante, te ver falando de Deus me encanta.</p>
-            <p>Entrar com você em uma loja e ficar 
-                1 hora só reclamando do seu gosto duvidoso para roupa,
-                só de pensar em quantas vezes passei por ela de uma ponta a outra
-                sem nem virar o pescoço, mas com você achei beleza e graça em lugares que 
-                nunca tinham feito sentido pra mim.</p>
-            <p>Podia ser só mais um filme, podia ser só mais um cinema, mas foi a gente se olhando apaixonado enquanto na tela um alienígena comia a cabeça das pessoas.</p>
-           <p> O tempo passa em uma velocidade diferente desde que te conheci, o tempo com você voa, o tempo sem você se arrasta.</p>
-           <p> A ansiedade antes de te ver e a alegria e a saudade após te deixar sempre se contrastam no meu dia.</p>
-
-            <p> Subir sua rua quase correndo mesmo depois de um dia cansativo só por saber que o único descanso que realmente preciso é no seu abraço.</p>
-
-            <p>Quando meu nome pra você se tornou "amor" foi a melhor sensação do mundo.</p>
-                <p> Eu te amo, eu te quero, eu te espero.</p>
-            <p>Você ainda está nas minhas orações diárias.</p>
-                   <p> Sonho incansavelmente com você nos meu braços. </p>
-                        <p> Meu futuro tem seu toque e meus dias tem seu cheiro.</p>
-        
-        
+            <p>Esse tem sido meu lugar favorito, feliz ano novo.</p>
+            <p>Sempre soube que seria difícil te deixar ir...</p>
+            <p>Te ver cantando é apaixonante...</p>
+            <p>Entrar com você em uma loja e ficar 1 hora só reclamando...</p>
         </div>
 
-
+        <!-- Aba Futuro -->
         <div id="futuro" class="tab-content">
-          <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."</p> 
-            
-            
-            <p> </p>
-                
+            <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."</p>
         </div>
-        
     </div>
 
     <script>
@@ -215,18 +177,15 @@
 
         // Função para ajustar a largura das fontes e o layout
         function adjustLayout() {
-            // Obtém a largura da tela
             const screenWidth = window.innerWidth;
 
-            // Ajusta o tamanho da fonte do menu baseado na largura da tela
             const menuLinks = document.querySelectorAll('.menu a');
-            const baseFontSize = 16; // Tamanho base da fonte
-            const adjustedFontSize = baseFontSize * (screenWidth / 1200); // Ajuste proporcional
+            const baseFontSize = 16;
+            const adjustedFontSize = baseFontSize * (screenWidth / 1200);
             menuLinks.forEach(link => {
                 link.style.fontSize = `${adjustedFontSize}px`;
             });
 
-            // Ajusta o padding do menu para telas menores
             const menu = document.getElementById('menu');
             if (screenWidth < 600) {
                 menu.style.padding = '10px';
@@ -234,18 +193,16 @@
                 menu.style.padding = '20px';
             }
 
-            // Ajusta o conteúdo de texto
             const content = document.getElementById('content');
-            const adjustedContentWidth = Math.min(screenWidth * 0.8, 800); // Largura máxima de 800px
+            const adjustedContentWidth = Math.min(screenWidth * 0.8, 800);
             content.style.maxWidth = `${adjustedContentWidth}px`;
 
-            // Ajusta o tamanho das imagens para dispositivos móveis
             const images = document.querySelectorAll('.image-gallery img');
             images.forEach(img => {
                 if (screenWidth < 600) {
-                    img.style.maxWidth = '100%'; // Imagens ocupando toda a largura
+                    img.style.maxWidth = '100%';
                 } else {
-                    img.style.maxWidth = '200px'; // Limita a largura das imagens
+                    img.style.maxWidth = '200px';
                 }
             });
         }
@@ -254,15 +211,16 @@
         window.addEventListener('load', adjustLayout);
         window.addEventListener('resize', adjustLayout);
     </script>
+
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "5c702593-4470-4140-9127-7d71662a3042",
-    });
-  });
-</script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "5c702593-4470-4140-9127-7d71662a3042",
+            });
+        });
+    </script>
 
 </body>
 </html>
