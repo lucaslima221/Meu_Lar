@@ -6,14 +6,14 @@
     <title>Meu Lar</title>
     <link rel="icon" type="image/png" sizes="512x512" href="icon2.jpeg">
     <link rel="apple-touch-icon" sizes="180x180" href="icon2.jpeg">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         /* Estilo global */
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50); /* Gradiente no fundo */
             color: white;
             font-family: 'EB Garamond', Georgia, serif;
             display: flex;
@@ -36,7 +36,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.9); /* Fundo semi-transparente */
             text-align: center;
             padding: 15px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -52,16 +52,18 @@
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-size: 1em;
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative;
         }
 
         .menu a:hover {
             background-color: #555;
             transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efeito de neon */
         }
 
         /* Conteúdo das abas */
@@ -130,7 +132,7 @@
 
         .static-gallery img:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.5); /* Brilho ao passar o mouse */
         }
 
         /* Botão de voltar ao topo */
@@ -175,13 +177,12 @@
         }
 
         body.light-mode {
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             color: #333;
         }
 
         body.light-mode .menu {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         body.light-mode .menu a {
@@ -199,6 +200,27 @@
         body.light-mode .author {
             color: #777;
         }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(51, 51, 51, 0.9);
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -208,7 +230,6 @@
         <a href="#" onclick="showTab('meu-mundo')"><i class="fas fa-globe"></i> Mundo</a>
         <a href="#" onclick="showTab('meus-pensamentos')"><i class="fas fa-brain"></i> Pensamentos</a>
         <a href="#" onclick="showTab('minhas-vivencias')"><i class="fas fa-heart"></i> Vivências</a>
-        <a href="#" onclick="showTab('futuro')"><i class="fas fa-heartbeat"></i> ❤️</a>
     </div>
 
     <!-- Botão de voltar ao topo -->
@@ -226,72 +247,12 @@
         <div id="meu-mundo" class="tab-content active-tab">
             <!-- Galeria dinâmica -->
             <div class="dynamic-gallery">
-                <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
-                <img src="imagens/meuamor0.jpg" alt="Imagem 0">
-                <img src="imagens/meuamor2.jpg" alt="Imagem 2">
-                <img src="imagens/meuamor3.jpg" alt="Imagem 3">
-                <img src="imagens/meuamor4.jpg" alt="Imagem 4">
-                <img src="imagens/meuamor5.jpg" alt="Imagem 5">
-                <img src="imagens/meuamor6.jpg" alt="Imagem 6">
-                <img src="imagens/meuamor7.jpg" alt="Imagem 7">
-                <img src="imagens/meuamor8.jpg" alt="Imagem 8">
-                <img src="imagens/meuamor9.jpg" alt="Imagem 9">
-                <img src="imagens/meuamor10.jpg" alt="Imagem 10">
-                <img src="imagens/meuamor11.jpg" alt="Imagem 11">
-                <img src="imagens/meuamor12.jpg" alt="Imagem 12">
-                <img src="imagens/meuamor13.jpg" alt="Imagem 13">
-                <img src="imagens/meuamor14.jpg" alt="Imagem 14">
-                <img src="imagens/meuamor15.jpg" alt="Imagem 15">
-                <img src="imagens/meuamor16.jpg" alt="Imagem 16">
-                <img src="imagens/meuamor17.jpg" alt="Imagem 17">
-                <img src="imagens/meuamor18.jpg" alt="Imagem 18">
-                <img src="imagens/meuamor19.jpg" alt="Imagem 19">
-                <img src="imagens/meuamor20.jpg" alt="Imagem 20">
-                <img src="imagens/meuamor21.jpg" alt="Imagem 21">
-                <img src="imagens/meuamor22.jpg" alt="Imagem 22">
-                <img src="imagens/meuamor23.jpg" alt="Imagem 23">
-                <img src="imagens/meuamor24.jpg" alt="Imagem 24">
-                <img src="imagens/meuamor25.jpg" alt="Imagem 25">
-                <img src="imagens/meuamor26.jpg" alt="Imagem 26">
-                <img src="imagens/meuamor27.jpg" alt="Imagem 27">
-                <img src="imagens/meuamor28.jpg" alt="Imagem 28">
-                <img src="imagens/meuamor29.jpg" alt="Imagem 29">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 30">
+                <!-- Imagens dinâmicas aqui -->
             </div>
 
             <!-- Galeria estática -->
             <div class="static-gallery">
-                <img src="imagens/meuamor1.jpg" alt="Imagem 1">
-                <img src="imagens/meuamor0.jpg" alt="Imagem 0">
-                <img src="imagens/meuamor2.jpg" alt="Imagem 2">
-                <img src="imagens/meuamor3.jpg" alt="Imagem 3">
-                <img src="imagens/meuamor4.jpg" alt="Imagem 4">
-                <img src="imagens/meuamor5.jpg" alt="Imagem 5">
-                <img src="imagens/meuamor6.jpg" alt="Imagem 6">
-                <img src="imagens/meuamor7.jpg" alt="Imagem 7">
-                <img src="imagens/meuamor8.jpg" alt="Imagem 8">
-                <img src="imagens/meuamor9.jpg" alt="Imagem 9">
-                <img src="imagens/meuamor10.jpg" alt="Imagem 10">
-                <img src="imagens/meuamor11.jpg" alt="Imagem 11">
-                <img src="imagens/meuamor12.jpg" alt="Imagem 12">
-                <img src="imagens/meuamor13.jpg" alt="Imagem 13">
-                <img src="imagens/meuamor14.jpg" alt="Imagem 14">
-                <img src="imagens/meuamor15.jpg" alt="Imagem 15">
-                <img src="imagens/meuamor16.jpg" alt="Imagem 16">
-                <img src="imagens/meuamor17.jpg" alt="Imagem 17">
-                <img src="imagens/meuamor18.jpg" alt="Imagem 18">
-                <img src="imagens/meuamor19.jpg" alt="Imagem 19">
-                <img src="imagens/meuamor20.jpg" alt="Imagem 20">
-                <img src="imagens/meuamor21.jpg" alt="Imagem 21">
-                <img src="imagens/meuamor22.jpg" alt="Imagem 22">
-                <img src="imagens/meuamor23.jpg" alt="Imagem 23">
-                <img src="imagens/meuamor24.jpg" alt="Imagem 24">
-                <img src="imagens/meuamor25.jpg" alt="Imagem 25">
-                <img src="imagens/meuamor26.jpg" alt="Imagem 26">
-                <img src="imagens/meuamor27.jpg" alt="Imagem 27">
-                <img src="imagens/meuamor28.jpg" alt="Imagem 28">
-                <img src="imagens/meuamor29.jpg" alt="Imagem 29">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 30">
+                <!-- Imagens estáticas aqui -->
             </div>
         </div>
 
@@ -307,14 +268,12 @@
             <p> ontem me encontrei com uma mulher que me proporcionou sentir emoções e relações incríveis e distintas...</p>
             <!-- Adicione mais conteúdo aqui -->
         </div>
-
-        <!-- Aba "Futuro" -->
-        <div id="futuro" class="tab-content">
-            <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."</p>
-            <p>Se eu acreditasse em outras vidas, diria que fui privado de te amar em uma vida passada...</p>
-            <!-- Adicione mais conteúdo aqui -->
-        </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Criado com ❤️ por <a href="#" target="_blank">Seu Nome</a></p>
+    </footer>
 
     <!-- Áudio -->
     <div class="audio-container">
@@ -327,13 +286,11 @@
     <script>
         // Função para trocar de abas
         function showTab(tabName) {
-            // Esconde todas as abas
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => {
                 tab.classList.remove('active-tab');
             });
 
-            // Exibe a aba selecionada
             const activeTab = document.getElementById(tabName);
             if (activeTab) {
                 activeTab.classList.add('active-tab');
