@@ -226,7 +226,7 @@
         <div id="meu-mundo" class="tab-content active-tab">
             <!-- Galeria dinâmica -->
             <div class="dynamic-gallery">
-                               <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
+                <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
                 <img src="imagens/meuamor0.jpg" alt="Imagem 0">
                 <img src="imagens/meuamor2.jpg" alt="Imagem 2">
                 <img src="imagens/meuamor3.jpg" alt="Imagem 3">
@@ -261,7 +261,7 @@
 
             <!-- Galeria estática -->
             <div class="static-gallery">
-               
+                <img src="imagens/meuamor1.jpg" alt="Imagem 1">
                 <img src="imagens/meuamor0.jpg" alt="Imagem 0">
                 <img src="imagens/meuamor2.jpg" alt="Imagem 2">
                 <img src="imagens/meuamor3.jpg" alt="Imagem 3">
@@ -295,17 +295,24 @@
             </div>
         </div>
 
-        <!-- Outras abas -->
+        <!-- Aba "Meus Pensamentos" -->
         <div id="meus-pensamentos" class="tab-content">
-            <!-- Conteúdo da aba "Meus Pensamentos" -->
+            <p class="quote">"eu namorava teu sorriso antes mesmo de você me namorar."</p>
+            <p class="author">— Desconhecido</p>
+            <!-- Adicione mais citações aqui -->
         </div>
 
+        <!-- Aba "Minhas Vivências" -->
         <div id="minhas-vivencias" class="tab-content">
-            <!-- Conteúdo da aba "Minhas Vivências" -->
+            <p> ontem me encontrei com uma mulher que me proporcionou sentir emoções e relações incríveis e distintas...</p>
+            <!-- Adicione mais conteúdo aqui -->
         </div>
 
+        <!-- Aba "Futuro" -->
         <div id="futuro" class="tab-content">
-            <!-- Conteúdo da aba "Futuro" -->
+            <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."</p>
+            <p>Se eu acreditasse em outras vidas, diria que fui privado de te amar em uma vida passada...</p>
+            <!-- Adicione mais conteúdo aqui -->
         </div>
     </div>
 
@@ -318,6 +325,21 @@
     </div>
 
     <script>
+        // Função para trocar de abas
+        function showTab(tabName) {
+            // Esconde todas as abas
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+
+            // Exibe a aba selecionada
+            const activeTab = document.getElementById(tabName);
+            if (activeTab) {
+                activeTab.classList.add('active-tab');
+            }
+        }
+
         // Mostrar/ocultar botão de voltar ao topo
         window.addEventListener('scroll', () => {
             const backToTop = document.getElementById('backToTop');
