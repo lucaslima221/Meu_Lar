@@ -92,10 +92,25 @@
         }
 
         /* Estilo para as imagens */
+        .image-gallery {
+            position: relative;
+            height: 500px; /* Ajuste a altura conforme necessário */
+            overflow: hidden;
+        }
+
         .image-gallery img {
-            max-width: 100%;
-            height: auto;
-            margin: 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .image-gallery img.active {
+            opacity: 1;
         }
 
         .quote {
@@ -125,21 +140,17 @@
         audio {
             width: 100%;
         }
-
     </style>
 </head>
 <body>
 
     <!-- Menu de navegação fixo -->
     <div class="menu" id="menu">
-    <a href="#" onclick="showTab('meu-mundo')">Mundo</a>
-<a href="#" onclick="showTab('meus-pensamentos')">Pensamentos</a>
-<a href="#" onclick="showTab('minhas-vivencias')">Vivências</a>
-<a href="#" onclick="showTab('futuro')">❤️</a>
+        <a href="#" onclick="showTab('meu-mundo')">Mundo</a>
+        <a href="#" onclick="showTab('meus-pensamentos')">Pensamentos</a>
+        <a href="#" onclick="showTab('minhas-vivencias')">Vivências</a>
+        <a href="#" onclick="showTab('futuro')">❤️</a>
     </div>
-
-
-
 
     <!-- Div para o áudio, centralizada na parte inferior da tela -->
     <div class="audio-container">
@@ -153,8 +164,8 @@
     <div class="content" id="content">
         <div id="meu-mundo" class="tab-content active-tab">
             <div class="image-gallery">
-                <img src="imagens/meuamor1.jpg" alt="Imagem 1">
-             <img src="imagens/meuamor0.jpg" alt="Imagem 0">
+                <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
+                <img src="imagens/meuamor0.jpg" alt="Imagem 0">
                 <img src="imagens/meuamor2.jpg" alt="Imagem 2">
                 <img src="imagens/meuamor3.jpg" alt="Imagem 3">
                 <img src="imagens/meuamor4.jpg" alt="Imagem 4">
@@ -184,14 +195,13 @@
                 <img src="imagens/meuamor28.jpg" alt="Imagem 28">
                 <img src="imagens/meuamor29.jpg" alt="Imagem 29">
                 <img src="imagens/meuamor30.jpg" alt="Imagem 30">
-                
-                
             </div>
         </div>
 
+        <!-- Outras abas -->
         <div id="meus-pensamentos" class="tab-content">
-
-            <p class="quote">"eu namorava teu sorriso antes mesmo de você me namorar."</p> 
+            <!-- Conteúdo da aba "Meus Pensamentos" -->
+<p class="quote">"eu namorava teu sorriso antes mesmo de você me namorar."</p> 
             <p class="author">— Desconhecido</p>
 
             <p class="quote">“há algo em você cujo as palavras não são capazes de descrever, 
@@ -407,16 +417,11 @@
         <br>.
         <br>.
         <br>. </p>
-            
-        </div>
+                    </div>
 
-
-
-        
         <div id="minhas-vivencias" class="tab-content">
-
-        
-            <p> ontem me encontrei com uma mulher que me proporcionou sentir emoções e relações incríveis e distintas, me senti amigo, namorado, amante, companheiro, protetor, me senti apaixonado, contagiado, risonho e incrivelmente feliz. É muito bom saber que escolhi a mulher certa pra compartilhar esses momentos e compartilhar a minha vida, feliz dia das mulheres minha paixão, obrigado por deixar a minha vida mais bonita com seu sorriso, mais agradável de se escutar com sua voz e mais colorida com sua presença.</p>
+            <!-- Conteúdo da aba "Minhas Vivências" -->
+  <p> ontem me encontrei com uma mulher que me proporcionou sentir emoções e relações incríveis e distintas, me senti amigo, namorado, amante, companheiro, protetor, me senti apaixonado, contagiado, risonho e incrivelmente feliz. É muito bom saber que escolhi a mulher certa pra compartilhar esses momentos e compartilhar a minha vida, feliz dia das mulheres minha paixão, obrigado por deixar a minha vida mais bonita com seu sorriso, mais agradável de se escutar com sua voz e mais colorida com sua presença.</p>
             
             <p> Ver a alegria nos seus olhos após pular uma onda, a paz que estava em seus olhos, ver seu sorriso sempre foi apaixonante, mas ver sua felicidade no mar foi restaurador.</p>
             <p> </p>
@@ -448,31 +453,41 @@
         </div>
 
         <div id="futuro" class="tab-content">
-            <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."(que bom que me encontrou bem antes dos mil anos)</p>
+            <!-- Conteúdo da aba "Futuro" -->
+ <p>"Você me encontrará quando voltar, mesmo que esteja mil anos atrasada."(que bom que me encontrou bem antes dos mil anos)</p>
                 <p>Se eu acreditasse em outras vidas, diria que fui privado de te amar em uma vida passada, justificaria metade do que sinto quando te tenho nos meus braços<p>
                         <p>A forma como o assunto nunca acaba, o sorriso no meu rosto nunca some e a saudade nunca tem fim me provam que encontrei um amor daqueles de filme </p>
                         <p></p>
 
-
         </div>
     </div>
 
-<script>
-    function showTab(tabName) {
-        // Esconde todas as abas
-        let tabs = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => {
-            tab.classList.remove('active-tab');  // Remove a classe 'active-tab' de todas
-        });
+    <script>
+        function showTab(tabName) {
+            // Esconde todas as abas
+            let tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');  // Remove a classe 'active-tab' de todas
+            });
 
-        // Exibe a aba selecionada
-        let activeTab = document.getElementById(tabName);
-        if (activeTab) {
-            activeTab.classList.add('active-tab');  // Adiciona a classe 'active-tab' na aba selecionada
+            // Exibe a aba selecionada
+            let activeTab = document.getElementById(tabName);
+            if (activeTab) {
+                activeTab.classList.add('active-tab');  // Adiciona a classe 'active-tab' na aba selecionada
+            }
         }
-    }
-</script>
 
+        // Script para trocar as imagens
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.image-gallery img');
 
+        function changeImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, 3000); // Troca a imagem a cada 3 segundos
+    </script>
 </body>
 </html>
