@@ -7,13 +7,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="icon2.jpeg">
     <link rel="apple-touch-icon" sizes="180x180" href="icon2.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         /* Estilo global */
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Fundo mais escuro */
+            background-color: #1a1a1a;
             color: white;
             font-family: 'EB Garamond', Georgia, serif;
             display: flex;
@@ -21,10 +21,16 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            padding-top: 80px; /* Espaço para o menu fixo */
+            padding-top: 80px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
         }
 
-        /* Estilo para o menu fixo no topo */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Menu fixo no topo */
         .menu {
             position: fixed;
             top: 0;
@@ -41,7 +47,6 @@
             flex-wrap: nowrap;
         }
 
-        /* Estilo para os links no menu */
         .menu a {
             color: white;
             text-decoration: none;
@@ -49,16 +54,17 @@
             border-radius: 5px;
             transition: background-color 0.3s ease, transform 0.2s ease;
             font-size: 1em;
-            flex-basis: 22%;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .menu a:hover {
             background-color: #555;
-            transform: translateY(-2px); /* Efeito de levantar ao passar o mouse */
+            transform: translateY(-2px);
         }
 
-        /* Estilo para o conteúdo */
+        /* Conteúdo das abas */
         .content {
             width: 90%;
             max-width: 800px;
@@ -67,21 +73,26 @@
             margin: 0 auto;
         }
 
-        /* Estilo das abas */
         .tab-content {
             display: none;
+            opacity: 0;
+            animation: fadeInTab 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInTab {
+            to { opacity: 1; }
         }
 
         .active-tab {
             display: block;
         }
 
-        /* Estilo para as imagens dinâmicas */
+        /* Galeria dinâmica */
         .dynamic-gallery {
             position: relative;
-            height: 500px; /* Altura fixa para a galeria dinâmica */
+            height: 500px;
             overflow: hidden;
-            margin-bottom: 30px; /* Espaço entre as galerias */
+            margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
@@ -102,11 +113,11 @@
             opacity: 1;
         }
 
-        /* Estilo para as imagens estáticas */
+        /* Galeria estática */
         .static-gallery {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Espaço entre as imagens */
+            gap: 20px;
         }
 
         .static-gallery img {
@@ -118,41 +129,75 @@
         }
 
         .static-gallery img:hover {
-            transform: scale(1.02); /* Efeito de zoom ao passar o mouse */
+            transform: scale(1.02);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
         }
 
-        /* Estilo para citações e autores */
-        .quote {
-            font-style: italic;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            color: #f0f0f0;
-        }
-
-        .author {
-            margin-top: 5px;
-            font-size: 0.9em;
-            color: #ccc;
-        }
-
-        /* Estilos para o áudio */
-        .audio-container {
+        /* Botão de voltar ao topo */
+        .back-to-top {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1001;
-            width: 80%;
-            max-width: 400px;
+            right: 20px;
             background-color: #333;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
         }
 
-        audio {
-            width: 100%;
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background-color: #555;
+            transform: translateY(-5px);
+        }
+
+        /* Modo claro/escuro */
+        .theme-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background-color: #555;
+        }
+
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        body.light-mode .menu {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .menu a {
+            color: #333;
+        }
+
+        body.light-mode .menu a:hover {
+            background-color: #ddd;
+        }
+
+        body.light-mode .quote {
+            color: #555;
+        }
+
+        body.light-mode .author {
+            color: #777;
         }
     </style>
 </head>
@@ -160,18 +205,20 @@
 
     <!-- Menu de navegação fixo -->
     <div class="menu" id="menu">
-        <a href="#" onclick="showTab('meu-mundo')">Mundo</a>
-        <a href="#" onclick="showTab('meus-pensamentos')">Pensamentos</a>
-        <a href="#" onclick="showTab('minhas-vivencias')">Vivências</a>
-        <a href="#" onclick="showTab('futuro')">❤️</a>
+        <a href="#" onclick="showTab('meu-mundo')"><i class="fas fa-globe"></i> Mundo</a>
+        <a href="#" onclick="showTab('meus-pensamentos')"><i class="fas fa-brain"></i> Pensamentos</a>
+        <a href="#" onclick="showTab('minhas-vivencias')"><i class="fas fa-heart"></i> Vivências</a>
+        <a href="#" onclick="showTab('futuro')"><i class="fas fa-heartbeat"></i> ❤️</a>
     </div>
 
-    <!-- Div para o áudio, centralizada na parte inferior da tela -->
-    <div class="audio-container">
-        <audio controls autoplay>
-            <source src="dezembro.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
+    <!-- Botão de voltar ao topo -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Botão de alternar tema -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
     </div>
 
     <!-- Conteúdo das abas -->
@@ -179,7 +226,7 @@
         <div id="meu-mundo" class="tab-content active-tab">
             <!-- Galeria dinâmica -->
             <div class="dynamic-gallery">
-                <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
+                               <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
                 <img src="imagens/meuamor0.jpg" alt="Imagem 0">
                 <img src="imagens/meuamor2.jpg" alt="Imagem 2">
                 <img src="imagens/meuamor3.jpg" alt="Imagem 3">
@@ -214,7 +261,7 @@
 
             <!-- Galeria estática -->
             <div class="static-gallery">
-                <img src="imagens/meuamor1.jpg" alt="Imagem 1">
+               
                 <img src="imagens/meuamor0.jpg" alt="Imagem 0">
                 <img src="imagens/meuamor2.jpg" alt="Imagem 2">
                 <img src="imagens/meuamor3.jpg" alt="Imagem 3">
@@ -262,22 +309,40 @@
         </div>
     </div>
 
+    <!-- Áudio -->
+    <div class="audio-container">
+        <audio controls autoplay>
+            <source src="dezembro.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </div>
+
     <script>
-        function showTab(tabName) {
-            // Esconde todas as abas
-            let tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => {
-                tab.classList.remove('active-tab');  // Remove a classe 'active-tab' de todas
-            });
-
-            // Exibe a aba selecionada
-            let activeTab = document.getElementById(tabName);
-            if (activeTab) {
-                activeTab.classList.add('active-tab');  // Adiciona a classe 'active-tab' na aba selecionada
+        // Mostrar/ocultar botão de voltar ao topo
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
             }
-        }
+        });
 
-        // Script para trocar as imagens dinâmicas
+        // Voltar ao topo
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Alternar tema claro/escuro
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
+
+        // Trocar imagens dinâmicas
         let currentImageIndex = 0;
         const images = document.querySelectorAll('.dynamic-gallery img');
 
@@ -287,7 +352,7 @@
             images[currentImageIndex].classList.add('active');
         }
 
-        setInterval(changeImage, 3000); // Troca a imagem a cada 3 segundos
+        setInterval(changeImage, 3000);
     </script>
 </body>
 </html>
