@@ -13,7 +13,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1a1a1a, #2c3e50); /* Gradiente no fundo */
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50);
             color: white;
             font-family: 'EB Garamond', Georgia, serif;
             display: flex;
@@ -24,6 +24,7 @@
             padding-top: 80px;
             opacity: 0;
             animation: fadeIn 1.5s ease-in-out forwards;
+            transition: all 0.5s ease;
         }
 
         @keyframes fadeIn {
@@ -36,7 +37,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(51, 51, 51, 0.9); /* Fundo semi-transparente */
+            background-color: rgba(51, 51, 51, 0.9);
             text-align: center;
             padding: 15px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -45,6 +46,7 @@
             justify-content: space-around;
             gap: 10px;
             flex-wrap: nowrap;
+            transition: all 0.5s ease;
         }
 
         .menu a {
@@ -63,7 +65,7 @@
         .menu a:hover {
             background-color: #555;
             transform: translateY(-2px);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efeito de neon */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         /* Conteúdo das abas */
@@ -97,6 +99,7 @@
             margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
         }
 
         .dynamic-gallery img {
@@ -132,7 +135,7 @@
 
         .static-gallery img:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.5); /* Brilho ao passar o mouse */
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.5);
         }
 
         /* Botão de voltar ao topo */
@@ -159,7 +162,7 @@
             transform: translateY(-5px);
         }
 
-        /* Modo claro/escuro */
+        /* Botão de alternar tema */
         .theme-toggle {
             position: fixed;
             bottom: 80px;
@@ -170,12 +173,37 @@
             border-radius: 50%;
             cursor: pointer;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background-color: #555;
         }
 
+        /* Botão de tema natalino */
+        .christmas-toggle {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .christmas-toggle:hover {
+            background-color: #555;
+        }
+
+        .christmas-toggle.active {
+            background-color: #c00;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Modo claro/escuro */
         body.light-mode {
             background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             color: #333;
@@ -210,6 +238,7 @@
             text-align: center;
             font-size: 0.9em;
             color: #ccc;
+            transition: all 0.5s ease;
         }
 
         footer a {
@@ -221,9 +250,217 @@
         footer a:hover {
             color: #fff;
         }
+
+        /* Efeito de neve (oculto por padrão) */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            animation: fall linear forwards;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Decorações de Natal (ocultas por padrão) */
+        .christmas-decoration {
+            position: fixed;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .santa-hat {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 50px;
+            background: linear-gradient(to bottom, #c00, #a00);
+            border-radius: 50% 50% 0 0;
+            z-index: 1001;
+        }
+
+        .santa-hat::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .santa-hat::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* Tema Natalino */
+        body.christmas-mode {
+            background: linear-gradient(135deg, #0a2e1d, #1a3b29);
+        }
+
+        body.christmas-mode .menu {
+            background-color: rgba(139, 0, 0, 0.9);
+            border-bottom: 2px solid #0a2e1d;
+        }
+
+        body.christmas-mode .menu a {
+            background-color: rgba(0, 100, 0, 0.3);
+        }
+
+        body.christmas-mode .menu a:hover {
+            background-color: #8B0000;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        body.christmas-mode .dynamic-gallery {
+            border: 2px solid #c00;
+        }
+
+        body.christmas-mode .static-gallery img {
+            border: 1px solid #c00;
+        }
+
+        body.christmas-mode .static-gallery img:hover {
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.7);
+        }
+
+        body.christmas-mode .back-to-top {
+            background-color: #8B0000;
+            border: 1px solid #FFD700;
+        }
+
+        body.christmas-mode .back-to-top:hover {
+            background-color: #c00;
+        }
+
+        body.christmas-mode .theme-toggle {
+            background-color: #8B0000;
+            border: 1px solid #FFD700;
+        }
+
+        body.christmas-mode .theme-toggle:hover {
+            background-color: #c00;
+        }
+
+        body.christmas-mode footer {
+            background-color: rgba(139, 0, 0, 0.9);
+            color: #FFD700;
+            border-top: 2px solid #0a2e1d;
+        }
+
+        body.christmas-mode footer a {
+            color: #FFD700;
+        }
+
+        body.christmas-mode footer a:hover {
+            color: #fff;
+        }
+
+        body.christmas-mode .snowflake {
+            opacity: 1;
+        }
+
+        body.christmas-mode .christmas-decoration {
+            opacity: 1;
+        }
+
+        .christmas-title {
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body.christmas-mode .christmas-title {
+            opacity: 1;
+        }
+
+        .christmas-title::before, .christmas-title::after {
+            content: "🎄";
+            margin: 0 10px;
+        }
+
+        .quote {
+            background-color: transparent;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid transparent;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        body.christmas-mode .quote {
+            background-color: rgba(0, 100, 0, 0.2);
+            border-left: 4px solid #c00;
+        }
+
+        body.christmas-mode .quote::before {
+            content: "❝";
+            font-size: 2em;
+            color: #c00;
+            position: absolute;
+            left: 10px;
+            top: 5px;
+        }
+
+        .author {
+            transition: color 0.5s ease;
+        }
+
+        body.christmas-mode .author {
+            color: #FFD700;
+        }
+
+        /* Áudio com tema natalino */
+        .audio-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+
+        body.christmas-mode .audio-container {
+            background-color: rgba(139, 0, 0, 0.8);
+            border: 1px solid #FFD700;
+        }
+
+        .audio-container audio {
+            width: 200px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Decorações de Natal -->
+    <div class="christmas-decoration santa-hat"></div>
 
     <!-- Menu de navegação fixo -->
     <div class="menu" id="menu">
@@ -237,22 +474,30 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Botão de alternar tema -->
+    <!-- Botão de alternar tema claro/escuro -->
     <div class="theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i>
     </div>
 
+    <!-- Botão de alternar tema natalino -->
+    <div class="christmas-toggle" id="christmasToggle">
+        <i class="fas fa-snowflake"></i>
+    </div>
+
     <!-- Conteúdo das abas -->
     <div class="content" id="content">
+        <h1 class="christmas-title">Meu Lar - Feliz Natal</h1>
+        <h1 class="normal-title">Meu Lar</h1>
+        
         <div id="meu-mundo" class="tab-content active-tab">
             <!-- Galeria dinâmica -->
             <div class="dynamic-gallery">
                 <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
                 <img src="imagens/cslnd0.jpg" alt="amrl">
-<img src="imagens/cslnd1.jpg" alt="am1rl">
-<img src="imagens/cslnd2.jpg" alt="am2rl">
-<img src="imagens/cslnd3.jpg" alt="amr3l">
-<img src="imagens/cslnd4.jpg" alt="ammr4">
+                <img src="imagens/cslnd1.jpg" alt="am1rl">
+                <img src="imagens/cslnd2.jpg" alt="am2rl">
+                <img src="imagens/cslnd3.jpg" alt="amr3l">
+                <img src="imagens/cslnd4.jpg" alt="ammr4">
                 <img src="imagens/amr0.jpg" alt="amr0">
                 <img src="imagens/amr1.jpg" alt="amr1">
                 <img src="imagens/amr2.jpg" alt="amr2">
@@ -294,23 +539,15 @@
                 <img src="imagens/meuamor32.webp" alt="Imagem 32">
                 <img src="imagens/meuamor33.webp" alt="Imagem 33">
                 <img src="imagens/meuamor34.webp" alt="Imagem 34">
-            <!--      <img src="imagens/meuamor30.jpg" alt="Imagem 35">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 36">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 37">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 38">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 39">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 40">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 41"> -->
             </div>
 
             <!-- Galeria estática -->
             <div class="static-gallery">
-                <!-- Imagens estáticas aqui -->
                 <img src="imagens/cslnd0.jpg" alt="amrl">
-<img src="imagens/cslnd1.jpg" alt="am1rl">
-<img src="imagens/cslnd2.jpg" alt="am2rl">
-<img src="imagens/cslnd3.jpg" alt="amr3l">
-<img src="imagens/cslnd4.jpg" alt="ammr4">
+                <img src="imagens/cslnd1.jpg" alt="am1rl">
+                <img src="imagens/cslnd2.jpg" alt="am2rl">
+                <img src="imagens/cslnd3.jpg" alt="amr3l">
+                <img src="imagens/cslnd4.jpg" alt="ammr4">
                 <img src="imagens/amr0.jpg" alt="amr0">
                 <img src="imagens/amr1.jpg" alt="amr1">
                 <img src="imagens/amr2.jpg" alt="amr2">
@@ -352,19 +589,12 @@
                 <img src="imagens/meuamor32.webp" alt="Imagem 32">
                 <img src="imagens/meuamor33.webp" alt="Imagem 33">
                 <img src="imagens/meuamor34.webp" alt="Imagem 34">
-            <!--<img src="imagens/meuamor30.jpg" alt="Imagem 35">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 36">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 37">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 38">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 39">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 40">
-                <img src="imagens/meuamor30.jpg" alt="Imagem 41"> -->
             </div>
         </div>
 
         <!-- Aba "Meus Pensamentos" -->
         <div id="meus-pensamentos" class="tab-content">
-<p class="quote"> "Quando estou tendo um dia ruim e exaustivo, sempre olho pra aliança e lembro de nós, e em um instante... eu melhoro."</p>
+    <p class="quote"> "Quando estou tendo um dia ruim e exaustivo, sempre olho pra aliança e lembro de nós, e em um instante... eu melhoro."</p>
 <p class="author">— Desconhecido</p>
             
             <p class="quote"> "Quando a gente se viu pela primeira vez
@@ -587,13 +817,11 @@
         <p class="author">— 
         </p>
 
-            <!-- Adicione mais citações aqui -->
         </div>
 
         <!-- Aba "Minhas Vivências" -->
         <div id="minhas-vivencias" class="tab-content">
-
-            <p> O laudo veio como uma prova de amor, mas esse amor já era provado, veio para provar a compreenssão, o cuidado, a lealdade e a cumplicidade.</p>
+  <p> O laudo veio como uma prova de amor, mas esse amor já era provado, veio para provar a compreenssão, o cuidado, a lealdade e a cumplicidade.</p>
             <p> Não consigo olhar nos seus olhos por muito tempo sem chorar, chorei tanto pra tê-los de volta, seria estranho se não fosse assim agora.</p>
               <p> Ontem me encontrei com uma mulher que me proporcionou sentir 
                   emoções e relações incríveis e distintas, me senti amigo, namorado, amante, companheiro, protetor, me senti apaixonado, contagiado, 
@@ -631,12 +859,12 @@
 
     <!-- Footer -->
     <footer>
-        <p>❤️<a href="#" target="_blank"></a></p>
+        <p>❤️ <span class="normal-footer">Com amor</span> <span class="christmas-footer">Feliz Natal e um Ano Novo repleto de amor!</span> ❤️</p>
     </footer>
 
     <!-- Áudio -->
     <div class="audio-container">
-        <audio controls autoplay>
+        <audio controls autoplay loop>
             <source src="dezembro.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
@@ -680,6 +908,23 @@
             icon.classList.toggle('fa-sun');
         });
 
+        // Alternar tema natalino
+        const christmasToggle = document.getElementById('christmasToggle');
+        let snowInterval;
+        
+        christmasToggle.addEventListener('click', () => {
+            document.body.classList.toggle('christmas-mode');
+            christmasToggle.classList.toggle('active');
+            
+            if (document.body.classList.contains('christmas-mode')) {
+                // Ativar efeito de neve
+                startSnowEffect();
+            } else {
+                // Desativar efeito de neve
+                stopSnowEffect();
+            }
+        });
+
         // Trocar imagens dinâmicas
         let currentImageIndex = 0;
         const images = document.querySelectorAll('.dynamic-gallery img');
@@ -691,6 +936,55 @@
         }
 
         setInterval(changeImage, 3000);
+
+        // Criar efeito de neve
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            
+            // Posição horizontal aleatória
+            const startPositionX = Math.random() * window.innerWidth;
+            snowflake.style.left = `${startPositionX}px`;
+            
+            // Tamanho aleatório
+            const size = Math.random() * 20 + 10;
+            snowflake.style.fontSize = `${size}px`;
+            
+            // Duração da animação aleatória
+            const duration = Math.random() * 10 + 5;
+            snowflake.style.animationDuration = `${duration}s`;
+            
+            // Opacidade aleatória
+            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(snowflake);
+            
+            // Remover o floco de neve após a animação
+            setTimeout(() => {
+                if (snowflake.parentNode) {
+                    snowflake.parentNode.removeChild(snowflake);
+                }
+            }, duration * 1000);
+        }
+
+        // Iniciar efeito de neve
+        function startSnowEffect() {
+            snowInterval = setInterval(createSnowflake, 100);
+        }
+
+        // Parar efeito de neve
+        function stopSnowEffect() {
+            clearInterval(snowInterval);
+            
+            // Remover todos os flocos de neve
+            const snowflakes = document.querySelectorAll('.snowflake');
+            snowflakes.forEach(snowflake => {
+                if (snowflake.parentNode) {
+                    snowflake.parentNode.removeChild(snowflake);
+                }
+            });
+        }
     </script>
 </body>
 </html>
