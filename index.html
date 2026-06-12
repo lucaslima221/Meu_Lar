@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilo global */
+        /* ======= ESTILO GLOBAL ======= */
         body {
             margin: 0;
             padding: 0;
@@ -31,7 +31,7 @@
             to { opacity: 1; }
         }
 
-        /* Menu fixo no topo */
+        /* ======= MENU FIXO ======= */
         .menu {
             position: fixed;
             top: 0;
@@ -68,7 +68,7 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        /* Conteúdo das abas */
+        /* ======= CONTEÚDO ======= */
         .content {
             width: 90%;
             max-width: 800px;
@@ -91,7 +91,7 @@
             display: block;
         }
 
-        /* Galeria dinâmica */
+        /* ======= GALERIA DINÂMICA ======= */
         .dynamic-gallery {
             position: relative;
             height: 500px;
@@ -118,7 +118,7 @@
             opacity: 1;
         }
 
-        /* Galeria estática */
+        /* ======= GALERIA ESTÁTICA ======= */
         .static-gallery {
             display: flex;
             flex-direction: column;
@@ -138,64 +138,34 @@
             box-shadow: 0 6px 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* Botão de voltar ao topo */
-        .back-to-top {
+        /* ======= BOTÕES FIXOS ======= */
+        .back-to-top,
+        .theme-toggle,
+        .christmas-toggle,
+        .valentine-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
             background-color: #333;
             color: white;
             padding: 10px 15px;
             border-radius: 50%;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-        }
+        .back-to-top { bottom: 20px; right: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .back-to-top.visible { opacity: 1; }
 
-        .back-to-top:hover {
+        .theme-toggle    { bottom: 80px;  right: 20px; }
+        .christmas-toggle{ bottom: 140px; right: 20px; }
+        .valentine-toggle{ bottom: 200px; right: 20px; }
+
+        .back-to-top:hover,
+        .theme-toggle:hover,
+        .christmas-toggle:hover,
+        .valentine-toggle:hover {
             background-color: #555;
             transform: translateY(-5px);
-        }
-
-        /* Botão de alternar tema */
-        .theme-toggle {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background-color: #333;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: #555;
-        }
-
-        /* Botão de tema natalino */
-        .christmas-toggle {
-            position: fixed;
-            bottom: 140px;
-            right: 20px;
-            background-color: #333;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .christmas-toggle:hover {
-            background-color: #555;
         }
 
         .christmas-toggle.active {
@@ -203,56 +173,58 @@
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
 
-        /* Modo claro/escuro */
+        .valentine-toggle.active {
+            background-color: #e91e63;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+        }
+
+        /* ======= TÍTULOS TEMÁTICOS ======= */
+        .normal-title,
+        .christmas-title,
+        .valentine-title {
+            transition: opacity 0.5s ease;
+            margin-bottom: 20px;
+        }
+
+        .christmas-title,
+        .valentine-title {
+            opacity: 0;
+            position: relative;
+        }
+
+        body.christmas-mode .christmas-title { opacity: 1; }
+        body.valentine-mode .valentine-title { opacity: 1; }
+        body.christmas-mode .normal-title,
+        body.valentine-mode .normal-title { display: none; }
+
+        .christmas-title::before, .christmas-title::after {
+            content: "🎄";
+            margin: 0 10px;
+        }
+
+        .valentine-title::before, .valentine-title::after {
+            content: "❤️";
+            margin: 0 10px;
+        }
+
+        .valentine-title {
+            color: #ff3366;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ======= MODO CLARO/ESCURO ======= */
         body.light-mode {
             background: linear-gradient(135deg, #f0f0f0, #d3d3d3);
             color: #333;
         }
+        body.light-mode .menu { background-color: rgba(255, 255, 255, 0.9); }
+        body.light-mode .menu a { color: #333; }
+        body.light-mode .menu a:hover { background-color: #ddd; }
+        body.light-mode .quote { color: #555; }
+        body.light-mode .author { color: #777; }
 
-        body.light-mode .menu {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        body.light-mode .menu a {
-            color: #333;
-        }
-
-        body.light-mode .menu a:hover {
-            background-color: #ddd;
-        }
-
-        body.light-mode .quote {
-            color: #555;
-        }
-
-        body.light-mode .author {
-            color: #777;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: rgba(51, 51, 51, 0.9);
-            width: 100%;
-            text-align: center;
-            font-size: 0.9em;
-            color: #ccc;
-            transition: all 0.5s ease;
-        }
-
-        footer a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        /* Efeito de neve (oculto por padrão) */
-        .snowflake {
+        /* ======= NEVE E CORAÇÕES ======= */
+        .snowflake, .heartfall {
             position: fixed;
             top: -10px;
             color: white;
@@ -271,141 +243,96 @@
             }
         }
 
-        /* Decorações de Natal (ocultas por padrão) */
-        .christmas-decoration {
-            position: fixed;
-            z-index: 999;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        @keyframes heartfall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-
-        .santa-hat::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 15px;
-            height: 15px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        /* Tema Natalino */
+        /* ======= TEMA NATALINO ======= */
         body.christmas-mode {
             background: linear-gradient(135deg, #0a2e1d, #1a3b29);
         }
-
         body.christmas-mode .menu {
             background-color: rgba(139, 0, 0, 0.9);
             border-bottom: 2px solid #0a2e1d;
         }
-
-        body.christmas-mode .menu a {
-            background-color: rgba(0, 100, 0, 0.3);
-        }
-
+        body.christmas-mode .menu a { background-color: rgba(0, 100, 0, 0.3); }
         body.christmas-mode .menu a:hover {
             background-color: #8B0000;
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
-
-        body.christmas-mode .dynamic-gallery {
-            border: 2px solid #c00;
-        }
-
-        body.christmas-mode .static-gallery img {
-            border: 1px solid #c00;
-        }
-
-        body.christmas-mode .static-gallery img:hover {
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.7);
-        }
-
-        body.christmas-mode .back-to-top {
-            background-color: #8B0000;
-            border: 1px solid #FFD700;
-        }
-
-        body.christmas-mode .back-to-top:hover {
-            background-color: #c00;
-        }
-
-        body.christmas-mode .theme-toggle {
-            background-color: #8B0000;
-            border: 1px solid #FFD700;
-        }
-
-        body.christmas-mode .theme-toggle:hover {
-            background-color: #c00;
-        }
-
+        body.christmas-mode .dynamic-gallery { border: 2px solid #c00; }
+        body.christmas-mode .static-gallery img { border: 1px solid #c00; }
+        body.christmas-mode .static-gallery img:hover { box-shadow: 0 6px 15px rgba(255, 215, 0, 0.7); }
+        body.christmas-mode .back-to-top { background-color: #8B0000; border: 1px solid #FFD700; }
+        body.christmas-mode .theme-toggle { background-color: #8B0000; border: 1px solid #FFD700; }
         body.christmas-mode footer {
             background-color: rgba(139, 0, 0, 0.9);
             color: #FFD700;
             border-top: 2px solid #0a2e1d;
         }
-
-        body.christmas-mode footer a {
-            color: #FFD700;
-        }
-
-        body.christmas-mode footer a:hover {
-            color: #fff;
-        }
-
-        body.christmas-mode .snowflake {
-            opacity: 1;
-        }
-
-        body.christmas-mode .christmas-decoration {
-            opacity: 1;
-        }
-
-        .christmas-title {
-            color: #FFD700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            position: relative;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        body.christmas-mode .christmas-title {
-            opacity: 1;
-        }
-
-        .christmas-title::before, .christmas-title::after {
-            content: "🎄";
-            margin: 0 10px;
-        }
-
-        .quote {
-            background-color: transparent;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid transparent;
-            position: relative;
-            transition: all 0.5s ease;
-        }
-
+        body.christmas-mode footer a { color: #FFD700; }
         body.christmas-mode .quote {
             background-color: rgba(0, 100, 0, 0.2);
             border-left: 4px solid #c00;
         }
-
-
-        .author {
-            transition: color 0.5s ease;
+        body.christmas-mode .author { color: #FFD700; }
+        body.christmas-mode .audio-container {
+            background-color: rgba(139, 0, 0, 0.8);
+            border: 1px solid #FFD700;
         }
 
-        body.christmas-mode .author {
-            color: #FFD700;
+        /* ======= TEMA DIA DOS NAMORADOS ======= */
+        body.valentine-mode {
+            background: linear-gradient(135deg, #e91e63, #f48fb1);
+        }
+        body.valentine-mode .menu {
+            background-color: rgba(200, 50, 100, 0.9);
+            border-bottom: 2px solid #ff3366;
+        }
+        body.valentine-mode .menu a { background-color: rgba(255, 105, 180, 0.2); }
+        body.valentine-mode .menu a:hover {
+            background-color: #ff3366;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+        }
+        body.valentine-mode .dynamic-gallery { border: 2px solid #ff3366; }
+        body.valentine-mode .static-gallery img { border: 1px solid #ff3366; }
+        body.valentine-mode .static-gallery img:hover { box-shadow: 0 6px 15px rgba(255, 105, 180, 0.8); }
+        body.valentine-mode .back-to-top { background-color: #ff3366; border: 1px solid #fff; }
+        body.valentine-mode .theme-toggle { background-color: #ff3366; border: 1px solid #fff; }
+        body.valentine-mode footer {
+            background-color: rgba(200, 50, 100, 0.9);
+            color: white;
+            border-top: 2px solid #ff3366;
+        }
+        body.valentine-mode footer a { color: white; }
+        body.valentine-mode .quote {
+            background-color: rgba(255, 105, 180, 0.15);
+            border-left: 4px solid #ff3366;
+        }
+        body.valentine-mode .author { color: #ffebee; }
+        body.valentine-mode .audio-container {
+            background-color: rgba(200, 50, 100, 0.8);
+            border: 1px solid #fff;
         }
 
-        /* Áudio com tema natalino */
+        /* ======= FOOTER ======= */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(51, 51, 51, 0.9);
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: #ccc;
+            transition: all 0.5s ease;
+        }
+        footer a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: #fff; }
+
+        /* ======= AUDIO CONTAINER ======= */
         .audio-container {
             position: fixed;
             bottom: 20px;
@@ -416,21 +343,35 @@
             border-radius: 10px;
             transition: all 0.5s ease;
         }
+        .audio-container audio { width: 200px; }
 
-        body.christmas-mode .audio-container {
-            background-color: rgba(139, 0, 0, 0.8);
-            border: 1px solid #FFD700;
+        /* ======= CORAÇÕES DECORATIVOS (FIXOS) ======= */
+        .static-hearts {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
-
-        .audio-container audio {
-            width: 200px;
+        body.valentine-mode .static-hearts { opacity: 1; }
+        .static-hearts span {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 2rem;
+            animation: floatHeart 4s ease-in-out infinite;
+        }
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Decorações de Natal -->
-    <!-- <div class="christmas-decoration santa-hat"></div> -->
+    <!-- Decorações estáticas (corações flutuantes no fundo) -->
+    <div class="static-hearts" id="staticHearts"></div>
 
     <!-- Menu de navegação fixo -->
     <div class="menu" id="menu">
@@ -440,26 +381,25 @@
     </div>
 
     <!-- Botão de voltar ao topo -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
     <!-- Botão de alternar tema claro/escuro -->
-    <div class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
+    <div class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></div>
 
     <!-- Botão de alternar tema natalino -->
-    <div class="christmas-toggle" id="christmasToggle">
-        <i class="fas fa-snowflake"></i>
-    </div>
+    <div class="christmas-toggle" id="christmasToggle"><i class="fas fa-snowflake"></i></div>
+
+    <!-- Botão de alternar tema Dia dos Namorados -->
+    <div class="valentine-toggle" id="valentineToggle"><i class="fas fa-heart"></i></div>
 
     <!-- Conteúdo das abas -->
     <div class="content" id="content">
-        <h1 class="christmas-title">Meu Lar - Feliz Natal</h1>
         <h1 class="normal-title">Meu Lar</h1>
+        <h1 class="christmas-title">Meu Lar - Feliz Natal</h1>
+        <h1 class="valentine-title">Meu Lar - Feliz Dia dos Namorados</h1>
         
         <div id="meu-mundo" class="tab-content active-tab">
+
             <!-- Galeria dinâmica -->
             <div class="dynamic-gallery">
                 <img src="imagens/meuamor1.jpg" alt="Imagem 1" class="active">
@@ -562,7 +502,7 @@
             </div>
         </div>
 
-        <!-- Aba "Meus Pensamentos" -->
+        <!-- Aba "Meus Pensamentos" (mantenha todas as frases) -->
         <div id="meus-pensamentos" class="tab-content">
     <p class="quote"> "Quando estou tendo um dia ruim e exaustivo, sempre olho pra aliança e lembro de nós, e em um instante... eu melhoro."</p>
 <p class="author">— Desconhecido</p>
@@ -786,12 +726,11 @@
         <p class="quote">"Gosto de ouvir o som da sua voz, ela parece silenciar todo o barulho que carrego em mim."</p>
         <p class="author">— 
         </p>
-
         </div>
 
-        <!-- Aba "Minhas Vivências" -->
+        <!-- Aba "Minhas Vivências" (mantenha tudo) -->
         <div id="minhas-vivencias" class="tab-content">
-  <p> O laudo veio como uma prova de amor, mas esse amor já era provado, veio para provar a compreenssão, o cuidado, a lealdade e a cumplicidade.</p>
+<p> O laudo veio como uma prova de amor, mas esse amor já era provado, veio para provar a compreenssão, o cuidado, a lealdade e a cumplicidade.</p>
             <p> Não consigo olhar nos seus olhos por muito tempo sem chorar, chorei tanto pra tê-los de volta, seria estranho se não fosse assim agora.</p>
               <p> Ontem me encontrei com uma mulher que me proporcionou sentir 
                   emoções e relações incríveis e distintas, me senti amigo, namorado, amante, companheiro, protetor, me senti apaixonado, contagiado, 
@@ -829,7 +768,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>❤️ <span class="normal-footer"></span> <span class="christmas-footer">Feliz Natal e um Ano Novo repleto de amor, meu amor!</span> ❤️</p>
+        <p>❤️ <span class="normal-footer"></span> <span class="christmas-footer">Feliz Natal e um Ano Novo repleto de amor, meu amor!</span> <span class="valentine-footer">Feliz Dia dos Namorados, meu amor!</span> ❤️</p>
     </footer>
 
     <!-- Áudio -->
@@ -841,35 +780,20 @@
     </div>
 
     <script>
-        // Função para trocar de abas
+        // ======= FUNÇÕES DE ABA =======
         function showTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => {
-                tab.classList.remove('active-tab');
-            });
-
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
             const activeTab = document.getElementById(tabName);
-            if (activeTab) {
-                activeTab.classList.add('active-tab');
-            }
+            if (activeTab) activeTab.classList.add('active-tab');
         }
 
-        // Mostrar/ocultar botão de voltar ao topo
+        // ======= VOLTAR AO TOPO =======
         window.addEventListener('scroll', () => {
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
         });
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // Voltar ao topo
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Alternar tema claro/escuro
+        // ======= TEMA CLARO/ESCURO =======
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
@@ -878,82 +802,106 @@
             icon.classList.toggle('fa-sun');
         });
 
-        // Alternar tema natalino
-        const christmasToggle = document.getElementById('christmasToggle');
-        let snowInterval;
-        
-        christmasToggle.addEventListener('click', () => {
-            document.body.classList.toggle('christmas-mode');
-            christmasToggle.classList.toggle('active');
-            
-            if (document.body.classList.contains('christmas-mode')) {
-                // Ativar efeito de neve
-                startSnowEffect();
-            } else {
-                // Desativar efeito de neve
-                stopSnowEffect();
-            }
-        });
-
-        // Trocar imagens dinâmicas
+        // ======= GALERIA DINÂMICA =======
         let currentImageIndex = 0;
         const images = document.querySelectorAll('.dynamic-gallery img');
-
         function changeImage() {
+            if (images.length === 0) return;
             images[currentImageIndex].classList.remove('active');
             currentImageIndex = (currentImageIndex + 1) % images.length;
             images[currentImageIndex].classList.add('active');
         }
-
         setInterval(changeImage, 3000);
 
-        // Criar efeito de neve
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = '❄';
-            
-            // Posição horizontal aleatória
-            const startPositionX = Math.random() * window.innerWidth;
-            snowflake.style.left = `${startPositionX}px`;
-            
-            // Tamanho aleatório
+        // ======= EFEITOS DE NEVE E CORAÇÕES =======
+        function createFallingElement(type) {
+            const el = document.createElement('div');
+            el.classList.add(type === 'snow' ? 'snowflake' : 'heartfall');
+            el.innerHTML = type === 'snow' ? '❄' : '❤️';
+            el.style.left = Math.random() * window.innerWidth + 'px';
             const size = Math.random() * 20 + 10;
-            snowflake.style.fontSize = `${size}px`;
-            
-            // Duração da animação aleatória
+            el.style.fontSize = size + 'px';
             const duration = Math.random() * 10 + 5;
-            snowflake.style.animationDuration = `${duration}s`;
-            
-            // Opacidade aleatória
-            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
-            
-            document.body.appendChild(snowflake);
-            
-            // Remover o floco de neve após a animação
-            setTimeout(() => {
-                if (snowflake.parentNode) {
-                    snowflake.parentNode.removeChild(snowflake);
-                }
-            }, duration * 1000);
+            el.style.animationDuration = duration + 's';
+            el.style.opacity = Math.random() * 0.7 + 0.3;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), duration * 1000);
         }
 
-        // Iniciar efeito de neve
-        function startSnowEffect() {
-            snowInterval = setInterval(createSnowflake, 100);
-        }
+        let snowInterval, heartInterval;
 
-        // Parar efeito de neve
-        function stopSnowEffect() {
+        function startSnow() {
+            stopSnow();
+            snowInterval = setInterval(() => createFallingElement('snow'), 100);
+        }
+        function stopSnow() {
             clearInterval(snowInterval);
-            
-            // Remover todos os flocos de neve
-            const snowflakes = document.querySelectorAll('.snowflake');
-            snowflakes.forEach(snowflake => {
-                if (snowflake.parentNode) {
-                    snowflake.parentNode.removeChild(snowflake);
-                }
-            });
+            document.querySelectorAll('.snowflake').forEach(el => el.remove());
+        }
+        function startHearts() {
+            stopHearts();
+            heartInterval = setInterval(() => createFallingElement('heart'), 120);
+        }
+        function stopHearts() {
+            clearInterval(heartInterval);
+            document.querySelectorAll('.heartfall').forEach(el => el.remove());
+        }
+
+        // ======= TOGGLE NATALINO =======
+        const christmasToggle = document.getElementById('christmasToggle');
+        christmasToggle.addEventListener('click', () => {
+            const body = document.body;
+            const isChristmas = body.classList.contains('christmas-mode');
+            // Se ativar Natal, desliga Dia dos Namorados
+            if (!isChristmas) {
+                body.classList.remove('valentine-mode');
+                stopHearts();
+                valentineToggle.classList.remove('active');
+            }
+            body.classList.toggle('christmas-mode');
+            christmasToggle.classList.toggle('active');
+            if (body.classList.contains('christmas-mode')) {
+                startSnow();
+            } else {
+                stopSnow();
+            }
+        });
+
+        // ======= TOGGLE DIA DOS NAMORADOS =======
+        const valentineToggle = document.getElementById('valentineToggle');
+        valentineToggle.addEventListener('click', () => {
+            const body = document.body;
+            const isValentine = body.classList.contains('valentine-mode');
+            // Se ativar Dia dos Namorados, desliga Natal
+            if (!isValentine) {
+                body.classList.remove('christmas-mode');
+                stopSnow();
+                christmasToggle.classList.remove('active');
+            }
+            body.classList.toggle('valentine-mode');
+            valentineToggle.classList.toggle('active');
+            if (body.classList.contains('valentine-mode')) {
+                startHearts();
+                generateStaticHearts();
+            } else {
+                stopHearts();
+                document.getElementById('staticHearts').innerHTML = '';
+            }
+        });
+
+        // ======= CORAÇÕES ESTÁTICOS NO FUNDO (opcionais) =======
+        function generateStaticHearts() {
+            const container = document.getElementById('staticHearts');
+            container.innerHTML = '';
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('span');
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                heart.style.fontSize = (Math.random() * 30 + 15) + 'px';
+                container.appendChild(heart);
+            }
         }
     </script>
 </body>
