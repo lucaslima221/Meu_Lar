@@ -57,32 +57,6 @@
         @keyframes fadeInTab { to { opacity: 1; } }
         .active-tab { display: block; }
 
-        /* ======= CONTADOR ======= */
-        .contador-container {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-            font-family: 'Pacifico', cursive;
-        }
-        .contador-titulo { font-size: 1.2em; margin-bottom: 10px; }
-        .contador-numeros {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            font-size: 1.1em;
-        }
-        .contador-item {
-            background: rgba(0,0,0,0.3);
-            padding: 8px 12px;
-            border-radius: 10px;
-        }
-        .contador-item span { font-size: 1.4em; font-weight: bold; }
-
         /* ======= GALERIA DINÂMICA ======= */
         .dynamic-gallery {
             position: relative; height: 500px; overflow: hidden;
@@ -127,8 +101,7 @@
         .static-gallery .img-wrapper:hover .img-hover-text { opacity: 1; }
 
         /* ======= BOTÕES FIXOS ======= */
-        .back-to-top, .theme-toggle, .christmas-toggle, .valentine-toggle,
-        .starry-toggle, .surprise-btn, .envelope-btn {
+        .back-to-top, .theme-toggle, .christmas-toggle, .valentine-toggle, .envelope-btn {
             position: fixed; background-color: #333; color: white;
             padding: 10px 15px; border-radius: 50%; cursor: pointer;
             z-index: 1000; transition: all 0.3s ease;
@@ -140,18 +113,14 @@
         .theme-toggle    { bottom: 80px;  right: 20px; }
         .christmas-toggle{ bottom: 140px; right: 20px; }
         .valentine-toggle{ bottom: 200px; right: 20px; }
-        .starry-toggle   { bottom: 260px; right: 20px; }
-        .surprise-btn    { bottom: 320px; right: 20px; }
-        .envelope-btn    { bottom: 380px; right: 20px; }
+        .envelope-btn    { bottom: 260px; right: 20px; }
 
         .back-to-top:hover, .theme-toggle:hover,
-        .christmas-toggle:hover, .valentine-toggle:hover,
-        .starry-toggle:hover, .surprise-btn:hover, .envelope-btn:hover {
+        .christmas-toggle:hover, .valentine-toggle:hover, .envelope-btn:hover {
             background-color: #555; transform: translateY(-5px);
         }
         .christmas-toggle.active { background-color: #c00; box-shadow: 0 0 10px rgba(255,215,0,0.7); }
         .valentine-toggle.active  { background-color: #e91e63; box-shadow: 0 0 15px rgba(255,105,180,0.8); }
-        .starry-toggle.active    { background-color: #1a237e; box-shadow: 0 0 15px rgba(100,180,255,0.8); }
 
         /* ======= TÍTULOS TEMÁTICOS ======= */
         .normal-title, .christmas-title, .valentine-title { transition: opacity 0.5s ease; margin-bottom: 20px; }
@@ -171,8 +140,8 @@
         body.light-mode .quote { color: #555; }
         body.light-mode .author { color: #777; }
 
-        /* ======= NEVE / CORAÇÕES / SURPRESA ======= */
-        .snowflake, .heartfall, .special-fall {
+        /* ======= NEVE / CORAÇÕES ======= */
+        .snowflake, .heartfall {
             position: fixed; top: -10px; color: white; font-size: 1em;
             animation: fall linear forwards; z-index: 9999; pointer-events: none;
             opacity: 0; transition: opacity 0.5s ease;
@@ -223,23 +192,6 @@
         body.valentine-mode .quote { background-color: rgba(255,105,180,0.15); border-left: 4px solid #ff3366; }
         body.valentine-mode .author { color: #ffebee; }
         body.valentine-mode .audio-container { background-color: rgba(200,50,100,0.8); border: 1px solid #fff; }
-
-        /* ======= TEMA CÉU ESTRELADO ======= */
-        body.starry-mode {
-            background: linear-gradient(135deg, #0d0d2b, #1a1a4e, #2c2c6c);
-        }
-        .estrela {
-            position: fixed;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: brilhoEstrela 2s infinite alternate;
-        }
-        @keyframes brilhoEstrela {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.5); }
-        }
 
         /* ======= MODAL CARTA ======= */
         .modal-overlay {
@@ -362,13 +314,11 @@
         <a href="#" onclick="showTab('minhas-vivencias')"><i class="fas fa-heart"></i> Vivências</a>
     </div>
 
-    <!-- Botões fixos (ordem de baixo pra cima na direita) -->
+    <!-- Botões fixos -->
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></div>
     <div class="christmas-toggle" id="christmasToggle"><i class="fas fa-snowflake"></i></div>
     <div class="valentine-toggle" id="valentineToggle"><i class="fas fa-heart"></i></div>
-    <div class="starry-toggle" id="starryToggle"><i class="fas fa-star"></i></div>
-    <div class="surprise-btn" id="surpriseBtn"><i class="fas fa-gift"></i></div>
     <div class="envelope-btn" id="envelopeBtn"><i class="fas fa-envelope"></i></div>
 
     <!-- Modal da Carta -->
@@ -392,12 +342,6 @@
 
     <!-- Conteúdo das abas (carregadas externamente) -->
     <div class="content" id="content">
-        <!-- Contador de tempo juntos -->
-        <div class="contador-container" id="contadorContainer">
-            <div class="contador-titulo">❤️ Juntos há ❤️</div>
-            <div class="contador-numeros" id="contadorNumeros"></div>
-        </div>
-
         <h1 class="normal-title">Meu Lar</h1>
         <h1 class="christmas-title">Meu Lar - Feliz Natal</h1>
         <h1 class="valentine-title">Meu Lar - Feliz Dia dos Namorados</h1>
@@ -422,9 +366,6 @@
 
     <script>
         // ==================== CONFIGURAÇÕES ====================
-        // ❤️ ALTERE A DATA AQUI: ano, mês (0-11), dia, hora, minuto, segundo
-        const dataInicio = new Date(2024, 05, 09, 0, 0, 0); // Exemplo: 1º de janeiro de 2024
-
         // Mensagem da carta secreta
         const cartaMensagem = `Meu amor,
 
@@ -467,9 +408,7 @@ Para sempre seu. ❤️`;
                     aplicarLegendasEstaticas();
                     initLightbox();
                 }
-                if (tabId === 'meus-pensamentos') {
-                    initBotaoFraseAleatoria();
-                }
+                // Removida a chamada para initBotaoFraseAleatoria()
             } catch (error) {
                 tabElement.innerHTML = '<p>Erro ao carregar conteúdo.</p>';
                 console.error(error);
@@ -487,39 +426,7 @@ Para sempre seu. ❤️`;
         document.addEventListener('DOMContentLoaded', () => {
             const initialTab = document.querySelector('.tab-content.active-tab');
             if (initialTab) loadTabContent(initialTab.id);
-            initContador();
         });
-
-        // ==================== CONTADOR DE TEMPO ====================
-        function initContador() {
-            const container = document.getElementById('contadorNumeros');
-            function atualizarContador() {
-                const agora = new Date();
-                let diff = agora - dataInicio;
-                if (diff < 0) {
-                    container.innerHTML = '<p>A data ainda não chegou...</p>';
-                    return;
-                }
-                const segundos = Math.floor(diff / 1000);
-                const minutos = Math.floor(segundos / 60);
-                const horas = Math.floor(minutos / 60);
-                const dias = Math.floor(horas / 24);
-                const anos = Math.floor(dias / 365.25);
-                const meses = Math.floor((dias % 365.25) / 30.44);
-                const diasRestantes = Math.floor((dias % 365.25) % 30.44);
-
-                container.innerHTML = `
-                    <div class="contador-item">${anos} <span>anos</span></div>
-                    <div class="contador-item">${meses} <span>meses</span></div>
-                    <div class="contador-item">${diasRestantes} <span>dias</span></div>
-                    <div class="contador-item">${horas % 24} <span>h</span></div>
-                    <div class="contador-item">${minutos % 60} <span>min</span></div>
-                    <div class="contador-item">${segundos % 60} <span>s</span></div>
-                `;
-            }
-            atualizarContador();
-            setInterval(atualizarContador, 1000);
-        }
 
         // ==================== GALERIA DINÂMICA ====================
         let galleryInterval;
@@ -550,7 +457,6 @@ Para sempre seu. ❤️`;
         function aplicarLegendasEstaticas() {
             const wrappers = document.querySelectorAll('.static-gallery .img-wrapper');
             wrappers.forEach((wrapper, index) => {
-                // Remove hover-text anterior se existir
                 const existente = wrapper.querySelector('.img-hover-text');
                 if (existente) existente.remove();
 
@@ -568,7 +474,6 @@ Para sempre seu. ❤️`;
         let indiceLightbox = 0;
 
         function initLightbox() {
-            // Coleta imagens da galeria dinâmica e estática
             const din = document.querySelectorAll('.dynamic-gallery img');
             const est = document.querySelectorAll('.static-gallery img');
             todasImagens = [...din, ...est];
@@ -600,7 +505,6 @@ Para sempre seu. ❤️`;
             indiceLightbox = (indiceLightbox + 1) % todasImagens.length;
             document.getElementById('lightboxImg').src = todasImagens[indiceLightbox].src;
         });
-        // Fechar lightbox com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.getElementById('lightbox').classList.remove('active');
@@ -624,16 +528,11 @@ Para sempre seu. ❤️`;
             icon.classList.toggle('fa-sun');
         });
 
-        // ==================== EFEITOS DE NEVE, CORAÇÕES, SURPRESA ====================
+        // ==================== EFEITOS DE NEVE E CORAÇÕES ====================
         function createFallingElement(type) {
             const el = document.createElement('div');
-            el.classList.add(type === 'snow' ? 'snowflake' : type === 'heart' ? 'heartfall' : 'special-fall');
-            const emojis = {
-                snow: '❄',
-                heart: '❤️',
-                special: ['🌸', '🎈', '✨', '💖', '🌹', '🎀', '💕'][Math.floor(Math.random() * 7)]
-            };
-            el.innerHTML = emojis[type];
+            el.classList.add(type === 'snow' ? 'snowflake' : 'heartfall');
+            el.innerHTML = type === 'snow' ? '❄' : '❤️';
             el.style.left = Math.random() * window.innerWidth + 'px';
             const size = Math.random() * 20 + 10;
             el.style.fontSize = size + 'px';
@@ -644,7 +543,7 @@ Para sempre seu. ❤️`;
             setTimeout(() => el.remove(), duration * 1000);
         }
 
-        let snowInterval, heartInterval, specialInterval;
+        let snowInterval, heartInterval;
         function startSnow() {
             stopSnow();
             snowInterval = setInterval(() => createFallingElement('snow'), 100);
@@ -656,20 +555,8 @@ Para sempre seu. ❤️`;
         }
         function stopHearts() { clearInterval(heartInterval); document.querySelectorAll('.heartfall').forEach(el => el.remove()); }
 
-        // Botão Surpresa (funcionalidade 2)
-        function startSpecial() {
-            stopSpecial();
-            specialInterval = setInterval(() => createFallingElement('special'), 80);
-            setTimeout(stopSpecial, 5000); // Dura 5 segundos
-        }
-        function stopSpecial() { clearInterval(specialInterval); }
-
-        document.getElementById('surpriseBtn').addEventListener('click', startSpecial);
-
         // ==================== CORAÇÕES NOS CLIQUES (funcionalidade 7) ====================
         document.addEventListener('click', (e) => {
-            // Evita que o clique no envelope, surpresa etc. gere coração também (opcional)
-            // Pode gerar em qualquer lugar, então sem restrições
             const heart = document.createElement('div');
             heart.className = 'click-heart';
             heart.innerHTML = '❤️';
@@ -684,10 +571,9 @@ Para sempre seu. ❤️`;
         christmasToggle.addEventListener('click', () => {
             const body = document.body;
             if (!body.classList.contains('christmas-mode')) {
-                body.classList.remove('valentine-mode', 'starry-mode');
+                body.classList.remove('valentine-mode');
                 stopHearts();
                 valentineToggle.classList.remove('active');
-                starryToggle.classList.remove('active');
             }
             body.classList.toggle('christmas-mode');
             christmasToggle.classList.toggle('active');
@@ -699,10 +585,9 @@ Para sempre seu. ❤️`;
         valentineToggle.addEventListener('click', () => {
             const body = document.body;
             if (!body.classList.contains('valentine-mode')) {
-                body.classList.remove('christmas-mode', 'starry-mode');
+                body.classList.remove('christmas-mode');
                 stopSnow();
                 christmasToggle.classList.remove('active');
-                starryToggle.classList.remove('active');
             }
             body.classList.toggle('valentine-mode');
             valentineToggle.classList.toggle('active');
@@ -727,45 +612,6 @@ Para sempre seu. ❤️`;
                 heart.style.fontSize = (Math.random() * 30 + 15) + 'px';
                 container.appendChild(heart);
             }
-        }
-
-        // ==================== TEMA CÉU ESTRELADO (funcionalidade 8) ====================
-        const starryToggle = document.getElementById('starryToggle');
-        starryToggle.addEventListener('click', () => {
-            const body = document.body;
-            if (!body.classList.contains('starry-mode')) {
-                body.classList.remove('christmas-mode', 'valentine-mode');
-                stopSnow();
-                stopHearts();
-                christmasToggle.classList.remove('active');
-                valentineToggle.classList.remove('active');
-            }
-            body.classList.toggle('starry-mode');
-            starryToggle.classList.toggle('active');
-            if (body.classList.contains('starry-mode')) {
-                criarEstrelas();
-            } else {
-                removerEstrelas();
-            }
-        });
-
-        function criarEstrelas() {
-            removerEstrelas();
-            for (let i = 0; i < 100; i++) {
-                const estrela = document.createElement('div');
-                estrela.className = 'estrela';
-                estrela.style.left = Math.random() * 100 + '%';
-                estrela.style.top = Math.random() * 100 + '%';
-                const tamanho = Math.random() * 4 + 1;
-                estrela.style.width = tamanho + 'px';
-                estrela.style.height = tamanho + 'px';
-                estrela.style.animationDelay = Math.random() * 2 + 's';
-                estrela.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                document.body.appendChild(estrela);
-            }
-        }
-        function removerEstrelas() {
-            document.querySelectorAll('.estrela').forEach(e => e.remove());
         }
 
         // ==================== CARTA SECRETA (funcionalidade 3) ====================
@@ -795,64 +641,9 @@ Para sempre seu. ❤️`;
                     i++;
                 } else {
                     clearInterval(intervalo);
-                    cursor.style.display = 'none'; // Esconde cursor ao terminar
+                    cursor.style.display = 'none';
                 }
             }, 30);
-        }
-
-        // ==================== FRASE ALEATÓRIA (funcionalidade 12) ====================
-        function initBotaoFraseAleatoria() {
-            // Remove botão existente se já houver
-            const existente = document.getElementById('btnFraseAleatoria');
-            if (existente) existente.remove();
-
-            const btn = document.createElement('button');
-            btn.id = 'btnFraseAleatoria';
-            btn.innerHTML = '<i class="fas fa-dice"></i> Frase aleatória';
-            btn.style.cssText = `
-                background: rgba(255,255,255,0.2);
-                border: 1px solid rgba(255,255,255,0.4);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 25px;
-                cursor: pointer;
-                font-family: 'EB Garamond', serif;
-                font-size: 1em;
-                margin: 20px auto;
-                display: block;
-                transition: all 0.3s ease;
-            `;
-            btn.addEventListener('mouseenter', () => {
-                btn.style.background = 'rgba(255,255,255,0.4)';
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.background = 'rgba(255,255,255,0.2)';
-            });
-
-            const container = document.getElementById('meus-pensamentos');
-            if (container) {
-                // Insere antes do primeiro parágrafo de pensamentos
-                const primeiroQuote = container.querySelector('.quote');
-                if (primeiroQuote) {
-                    container.insertBefore(btn, primeiroQuote);
-                } else {
-                    container.appendChild(btn);
-                }
-
-                btn.addEventListener('click', () => {
-                    const quotes = container.querySelectorAll('.quote');
-                    if (quotes.length === 0) return;
-                    const indice = Math.floor(Math.random() * quotes.length);
-                    // Remove destaque anterior
-                    quotes.forEach(q => q.style.background = '', q.style.border = '');
-                    // Destaca a frase selecionada
-                    quotes[indice].style.background = 'rgba(255,105,180,0.3)';
-                    quotes[indice].style.borderLeft = '4px solid #ff3366';
-                    quotes[indice].style.transition = 'all 0.5s ease';
-                    // Scroll suave até a frase
-                    quotes[indice].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            }
         }
     </script>
 </body>
