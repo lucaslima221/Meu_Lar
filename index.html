@@ -25,6 +25,7 @@
             opacity: 0;
             animation: fadeIn 1.5s ease-in-out forwards;
             transition: all 0.5s ease;
+            overflow-x: hidden;
         }
 
         @keyframes fadeIn { to { opacity: 1; } }
@@ -56,6 +57,32 @@
         @keyframes fadeInTab { to { opacity: 1; } }
         .active-tab { display: block; }
 
+        /* ======= CONTADOR ======= */
+        .contador-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 500px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            font-family: 'Pacifico', cursive;
+        }
+        .contador-titulo { font-size: 1.2em; margin-bottom: 10px; }
+        .contador-numeros {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 1.1em;
+        }
+        .contador-item {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+        .contador-item span { font-size: 1.4em; font-weight: bold; }
+
         /* ======= GALERIA DINÂMICA ======= */
         .dynamic-gallery {
             position: relative; height: 500px; overflow: hidden;
@@ -65,36 +92,66 @@
         .dynamic-gallery img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; border-radius: 10px;
+            cursor: pointer;
         }
         .dynamic-gallery img.active { opacity: 1; }
 
         /* ======= GALERIA ESTÁTICA ======= */
         .static-gallery { display: flex; flex-direction: column; gap: 20px; }
+        .static-gallery .img-wrapper {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
         .static-gallery img {
             width: 100%; height: auto; border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .static-gallery img:hover { transform: scale(1.02); box-shadow: 0 6px 15px rgba(255,255,255,0.5); }
+        .static-gallery .img-wrapper:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(255,255,255,0.5);
+        }
+        .img-hover-text {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .static-gallery .img-wrapper:hover .img-hover-text { opacity: 1; }
 
         /* ======= BOTÕES FIXOS ======= */
-        .back-to-top, .theme-toggle, .christmas-toggle, .valentine-toggle {
+        .back-to-top, .theme-toggle, .christmas-toggle, .valentine-toggle,
+        .starry-toggle, .surprise-btn, .envelope-btn {
             position: fixed; background-color: #333; color: white;
             padding: 10px 15px; border-radius: 50%; cursor: pointer;
             z-index: 1000; transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            width: 45px; height: 45px;
         }
-        .back-to-top { bottom: 20px; right: 20px; opacity: 0; }
+        .back-to-top    { bottom: 20px;  right: 20px; opacity: 0; }
         .back-to-top.visible { opacity: 1; }
         .theme-toggle    { bottom: 80px;  right: 20px; }
         .christmas-toggle{ bottom: 140px; right: 20px; }
         .valentine-toggle{ bottom: 200px; right: 20px; }
+        .starry-toggle   { bottom: 260px; right: 20px; }
+        .surprise-btn    { bottom: 320px; right: 20px; }
+        .envelope-btn    { bottom: 380px; right: 20px; }
 
         .back-to-top:hover, .theme-toggle:hover,
-        .christmas-toggle:hover, .valentine-toggle:hover {
+        .christmas-toggle:hover, .valentine-toggle:hover,
+        .starry-toggle:hover, .surprise-btn:hover, .envelope-btn:hover {
             background-color: #555; transform: translateY(-5px);
         }
         .christmas-toggle.active { background-color: #c00; box-shadow: 0 0 10px rgba(255,215,0,0.7); }
         .valentine-toggle.active  { background-color: #e91e63; box-shadow: 0 0 15px rgba(255,105,180,0.8); }
+        .starry-toggle.active    { background-color: #1a237e; box-shadow: 0 0 15px rgba(100,180,255,0.8); }
 
         /* ======= TÍTULOS TEMÁTICOS ======= */
         .normal-title, .christmas-title, .valentine-title { transition: opacity 0.5s ease; margin-bottom: 20px; }
@@ -114,13 +171,26 @@
         body.light-mode .quote { color: #555; }
         body.light-mode .author { color: #777; }
 
-        /* ======= NEVE / CORAÇÕES ======= */
-        .snowflake, .heartfall {
+        /* ======= NEVE / CORAÇÕES / SURPRESA ======= */
+        .snowflake, .heartfall, .special-fall {
             position: fixed; top: -10px; color: white; font-size: 1em;
             animation: fall linear forwards; z-index: 9999; pointer-events: none;
             opacity: 0; transition: opacity 0.5s ease;
         }
         @keyframes fall { to { transform: translateY(100vh); opacity: 0; } }
+
+        /* Coração de clique */
+        .click-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.5rem;
+            animation: heartPop 0.8s ease-out forwards;
+        }
+        @keyframes heartPop {
+            0% { transform: scale(0) translateY(0); opacity: 1; }
+            100% { transform: scale(1.5) translateY(-80px); opacity: 0; }
+        }
 
         /* ======= TEMA NATALINO ======= */
         body.christmas-mode { background: linear-gradient(135deg, #0a2e1d, #1a3b29); }
@@ -154,6 +224,101 @@
         body.valentine-mode .author { color: #ffebee; }
         body.valentine-mode .audio-container { background-color: rgba(200,50,100,0.8); border: 1px solid #fff; }
 
+        /* ======= TEMA CÉU ESTRELADO ======= */
+        body.starry-mode {
+            background: linear-gradient(135deg, #0d0d2b, #1a1a4e, #2c2c6c);
+        }
+        .estrela {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: brilhoEstrela 2s infinite alternate;
+        }
+        @keyframes brilhoEstrela {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* ======= MODAL CARTA ======= */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: #2c2c2c;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            text-align: left;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2em;
+            line-height: 1.6;
+            border: 2px solid #ff3366;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #ff3366;
+        }
+        .carta-texto {
+            white-space: pre-wrap;
+        }
+        .cursor-blink {
+            display: inline;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ======= LIGHTBOX ======= */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            display: none;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px; right: 30px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            display: flex; gap: 30px; margin-top: 20px;
+        }
+        .lightbox-nav i {
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+        .lightbox-nav i:hover { color: #ff3366; }
+
         /* ======= RODAPÉ E ÁUDIO ======= */
         footer {
             margin-top: 50px; padding: 20px;
@@ -169,7 +334,7 @@
         }
         .audio-container audio { width: 200px; }
 
-        /* ======= CORAÇÕES ESTÁTICOS ======= */
+        /* Corações estáticos do Dia dos Namorados */
         .static-hearts {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 998; opacity: 0; transition: opacity 0.5s ease;
@@ -197,19 +362,46 @@
         <a href="#" onclick="showTab('minhas-vivencias')"><i class="fas fa-heart"></i> Vivências</a>
     </div>
 
-    <!-- Botões fixos -->
+    <!-- Botões fixos (ordem de baixo pra cima na direita) -->
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></div>
     <div class="christmas-toggle" id="christmasToggle"><i class="fas fa-snowflake"></i></div>
     <div class="valentine-toggle" id="valentineToggle"><i class="fas fa-heart"></i></div>
+    <div class="starry-toggle" id="starryToggle"><i class="fas fa-star"></i></div>
+    <div class="surprise-btn" id="surpriseBtn"><i class="fas fa-gift"></i></div>
+    <div class="envelope-btn" id="envelopeBtn"><i class="fas fa-envelope"></i></div>
 
-    <!-- Conteúdo das abas (agora carregado externamente) -->
+    <!-- Modal da Carta -->
+    <div class="modal-overlay" id="cartaModal">
+        <div class="modal-content">
+            <span class="modal-close" id="fecharCarta">&times;</span>
+            <div class="carta-texto" id="cartaTexto"></div>
+            <span class="cursor-blink" id="cursor">|</span>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="fecharLightbox">&times;</span>
+        <img src="" alt="Lightbox" id="lightboxImg">
+        <div class="lightbox-nav">
+            <i class="fas fa-chevron-left" id="lightboxPrev"></i>
+            <i class="fas fa-chevron-right" id="lightboxNext"></i>
+        </div>
+    </div>
+
+    <!-- Conteúdo das abas (carregadas externamente) -->
     <div class="content" id="content">
+        <!-- Contador de tempo juntos -->
+        <div class="contador-container" id="contadorContainer">
+            <div class="contador-titulo">❤️ Juntos há ❤️</div>
+            <div class="contador-numeros" id="contadorNumeros"></div>
+        </div>
+
         <h1 class="normal-title">Meu Lar</h1>
         <h1 class="christmas-title">Meu Lar - Feliz Natal</h1>
         <h1 class="valentine-title">Meu Lar - Feliz Dia dos Namorados</h1>
 
-        <!-- As divs abaixo receberão o conteúdo dos arquivos HTML -->
         <div id="meu-mundo" class="tab-content active-tab" data-file="abas/meu-mundo.html"></div>
         <div id="meus-pensamentos" class="tab-content" data-file="abas/meus-pensamentos.html"></div>
         <div id="minhas-vivencias" class="tab-content" data-file="abas/minhas-vivencias.html"></div>
@@ -229,13 +421,36 @@
     </div>
 
     <script>
-        // ======= CARREGAMENTO DINÂMICO DAS ABAS =======
+        // ==================== CONFIGURAÇÕES ====================
+        // ❤️ ALTERE A DATA AQUI: ano, mês (0-11), dia, hora, minuto, segundo
+        const dataInicio = new Date(2024, 0, 1, 0, 0, 0); // Exemplo: 1º de janeiro de 2024
+
+        // Mensagem da carta secreta
+        const cartaMensagem = `Meu amor,
+
+Escrevo esta carta para dizer o quanto você é especial.
+
+Cada momento ao seu lado é um presente que guardo no coração.
+
+Obrigado por existir e por fazer da minha vida algo tão lindo.
+
+Com todo o meu amor,
+Para sempre seu. ❤️`;
+
+        // Legendas para as fotos estáticas (índice corresponde à ordem das imagens no HTML)
+        const legendasEstaticas = [
+            "Nosso primeiro encontro",
+            "Aquele sorriso que me conquistou",
+            "Dia inesquecível no parque",
+            "Nossa viagem dos sonhos",
+            "Rindo à toa juntos",
+            // Adicione quantas legendas quiser. Se faltar legenda, não aparece hover-text.
+        ];
+
+        // ==================== CARREGAMENTO DE ABAS ====================
         async function loadTabContent(tabId) {
             const tabElement = document.getElementById(tabId);
-            if (!tabElement) return;
-
-            // Se já foi carregado antes, não busca de novo
-            if (tabElement.dataset.loaded === 'true') return;
+            if (!tabElement || tabElement.dataset.loaded === 'true') return;
 
             const filePath = tabElement.dataset.file;
             if (!filePath) return;
@@ -247,9 +462,13 @@
                 tabElement.innerHTML = html;
                 tabElement.dataset.loaded = 'true';
 
-                // Se a aba for a de fotos (meu-mundo), reiniciar o slideshow
                 if (tabId === 'meu-mundo') {
                     initDynamicGallery();
+                    aplicarLegendasEstaticas();
+                    initLightbox();
+                }
+                if (tabId === 'meus-pensamentos') {
+                    initBotaoFraseAleatoria();
                 }
             } catch (error) {
                 tabElement.innerHTML = '<p>Erro ao carregar conteúdo.</p>';
@@ -257,40 +476,60 @@
             }
         }
 
-        // ======= TROCA DE ABAS =======
         function showTab(tabName) {
-            // Esconder todas as abas
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
-
             const activeTab = document.getElementById(tabName);
             if (!activeTab) return;
-
             activeTab.classList.add('active-tab');
-            // Carregar conteúdo se necessário
             loadTabContent(tabName);
         }
 
-        // Carrega automaticamente a primeira aba (ativa inicialmente)
         document.addEventListener('DOMContentLoaded', () => {
             const initialTab = document.querySelector('.tab-content.active-tab');
-            if (initialTab) {
-                loadTabContent(initialTab.id);
-            }
+            if (initialTab) loadTabContent(initialTab.id);
+            initContador();
         });
 
-        // ======= GALERIA DINÂMICA (refeita após carregamento) =======
+        // ==================== CONTADOR DE TEMPO ====================
+        function initContador() {
+            const container = document.getElementById('contadorNumeros');
+            function atualizarContador() {
+                const agora = new Date();
+                let diff = agora - dataInicio;
+                if (diff < 0) {
+                    container.innerHTML = '<p>A data ainda não chegou...</p>';
+                    return;
+                }
+                const segundos = Math.floor(diff / 1000);
+                const minutos = Math.floor(segundos / 60);
+                const horas = Math.floor(minutos / 60);
+                const dias = Math.floor(horas / 24);
+                const anos = Math.floor(dias / 365.25);
+                const meses = Math.floor((dias % 365.25) / 30.44);
+                const diasRestantes = Math.floor((dias % 365.25) % 30.44);
+
+                container.innerHTML = `
+                    <div class="contador-item">${anos} <span>anos</span></div>
+                    <div class="contador-item">${meses} <span>meses</span></div>
+                    <div class="contador-item">${diasRestantes} <span>dias</span></div>
+                    <div class="contador-item">${horas % 24} <span>h</span></div>
+                    <div class="contador-item">${minutos % 60} <span>min</span></div>
+                    <div class="contador-item">${segundos % 60} <span>s</span></div>
+                `;
+            }
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+        }
+
+        // ==================== GALERIA DINÂMICA ====================
         let galleryInterval;
         function initDynamicGallery() {
             const gallery = document.querySelector('.dynamic-gallery');
             if (!gallery) return;
-
-            // Limpa intervalo anterior
             if (galleryInterval) clearInterval(galleryInterval);
 
             const images = gallery.querySelectorAll('img');
             if (images.length === 0) return;
-
-            // Garante que apenas a primeira tenha classe 'active'
             images.forEach((img, idx) => {
                 if (idx === 0) img.classList.add('active');
                 else img.classList.remove('active');
@@ -302,9 +541,73 @@
                 currentIndex = (currentIndex + 1) % images.length;
                 images[currentIndex].classList.add('active');
             }, 3000);
+
+            // Re-inicializa lightbox para as novas imagens
+            initLightbox();
         }
 
-        // ======= BOTÃO VOLTAR AO TOPO =======
+        // ==================== LEGENDAS HOVER (funcionalidade 4) ====================
+        function aplicarLegendasEstaticas() {
+            const wrappers = document.querySelectorAll('.static-gallery .img-wrapper');
+            wrappers.forEach((wrapper, index) => {
+                // Remove hover-text anterior se existir
+                const existente = wrapper.querySelector('.img-hover-text');
+                if (existente) existente.remove();
+
+                if (index < legendasEstaticas.length) {
+                    const hoverText = document.createElement('div');
+                    hoverText.className = 'img-hover-text';
+                    hoverText.textContent = legendasEstaticas[index];
+                    wrapper.appendChild(hoverText);
+                }
+            });
+        }
+
+        // ==================== LIGHTBOX (funcionalidade 10) ====================
+        let todasImagens = [];
+        let indiceLightbox = 0;
+
+        function initLightbox() {
+            // Coleta imagens da galeria dinâmica e estática
+            const din = document.querySelectorAll('.dynamic-gallery img');
+            const est = document.querySelectorAll('.static-gallery img');
+            todasImagens = [...din, ...est];
+
+            todasImagens.forEach((img, idx) => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    abrirLightbox(idx);
+                });
+            });
+        }
+
+        function abrirLightbox(index) {
+            indiceLightbox = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            img.src = todasImagens[indiceLightbox].src;
+            lightbox.classList.add('active');
+        }
+
+        document.getElementById('fecharLightbox').addEventListener('click', () => {
+            document.getElementById('lightbox').classList.remove('active');
+        });
+        document.getElementById('lightboxPrev').addEventListener('click', () => {
+            indiceLightbox = (indiceLightbox - 1 + todasImagens.length) % todasImagens.length;
+            document.getElementById('lightboxImg').src = todasImagens[indiceLightbox].src;
+        });
+        document.getElementById('lightboxNext').addEventListener('click', () => {
+            indiceLightbox = (indiceLightbox + 1) % todasImagens.length;
+            document.getElementById('lightboxImg').src = todasImagens[indiceLightbox].src;
+        });
+        // Fechar lightbox com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        });
+
+        // ==================== BOTÃO VOLTAR AO TOPO ====================
         window.addEventListener('scroll', () => {
             document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
         });
@@ -312,7 +615,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ======= TEMA CLARO/ESCURO =======
+        // ==================== TEMA CLARO/ESCURO ====================
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
@@ -321,11 +624,16 @@
             icon.classList.toggle('fa-sun');
         });
 
-        // ======= EFEITOS DE NEVE E CORAÇÕES =======
+        // ==================== EFEITOS DE NEVE, CORAÇÕES, SURPRESA ====================
         function createFallingElement(type) {
             const el = document.createElement('div');
-            el.classList.add(type === 'snow' ? 'snowflake' : 'heartfall');
-            el.innerHTML = type === 'snow' ? '❄' : '❤️';
+            el.classList.add(type === 'snow' ? 'snowflake' : type === 'heart' ? 'heartfall' : 'special-fall');
+            const emojis = {
+                snow: '❄',
+                heart: '❤️',
+                special: ['🌸', '🎈', '✨', '💖', '🌹', '🎀', '💕'][Math.floor(Math.random() * 7)]
+            };
+            el.innerHTML = emojis[type];
             el.style.left = Math.random() * window.innerWidth + 'px';
             const size = Math.random() * 20 + 10;
             el.style.fontSize = size + 'px';
@@ -336,48 +644,65 @@
             setTimeout(() => el.remove(), duration * 1000);
         }
 
-        let snowInterval, heartInterval;
+        let snowInterval, heartInterval, specialInterval;
         function startSnow() {
             stopSnow();
             snowInterval = setInterval(() => createFallingElement('snow'), 100);
         }
-        function stopSnow() {
-            clearInterval(snowInterval);
-            document.querySelectorAll('.snowflake').forEach(el => el.remove());
-        }
+        function stopSnow() { clearInterval(snowInterval); document.querySelectorAll('.snowflake').forEach(el => el.remove()); }
         function startHearts() {
             stopHearts();
             heartInterval = setInterval(() => createFallingElement('heart'), 120);
         }
-        function stopHearts() {
-            clearInterval(heartInterval);
-            document.querySelectorAll('.heartfall').forEach(el => el.remove());
-        }
+        function stopHearts() { clearInterval(heartInterval); document.querySelectorAll('.heartfall').forEach(el => el.remove()); }
 
-        // ======= TOGGLE NATAL =======
+        // Botão Surpresa (funcionalidade 2)
+        function startSpecial() {
+            stopSpecial();
+            specialInterval = setInterval(() => createFallingElement('special'), 80);
+            setTimeout(stopSpecial, 5000); // Dura 5 segundos
+        }
+        function stopSpecial() { clearInterval(specialInterval); }
+
+        document.getElementById('surpriseBtn').addEventListener('click', startSpecial);
+
+        // ==================== CORAÇÕES NOS CLIQUES (funcionalidade 7) ====================
+        document.addEventListener('click', (e) => {
+            // Evita que o clique no envelope, surpresa etc. gere coração também (opcional)
+            // Pode gerar em qualquer lugar, então sem restrições
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = e.clientX - 12 + 'px';
+            heart.style.top = e.clientY - 12 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 800);
+        });
+
+        // ==================== TOGGLE NATAL ====================
         const christmasToggle = document.getElementById('christmasToggle');
         christmasToggle.addEventListener('click', () => {
             const body = document.body;
-            const isChristmas = body.classList.contains('christmas-mode');
-            if (!isChristmas) {
-                body.classList.remove('valentine-mode');
+            if (!body.classList.contains('christmas-mode')) {
+                body.classList.remove('valentine-mode', 'starry-mode');
                 stopHearts();
                 valentineToggle.classList.remove('active');
+                starryToggle.classList.remove('active');
             }
             body.classList.toggle('christmas-mode');
             christmasToggle.classList.toggle('active');
             body.classList.contains('christmas-mode') ? startSnow() : stopSnow();
         });
 
-        // ======= TOGGLE DIA DOS NAMORADOS =======
+        // ==================== TOGGLE DIA DOS NAMORADOS ====================
         const valentineToggle = document.getElementById('valentineToggle');
         valentineToggle.addEventListener('click', () => {
             const body = document.body;
-            const isValentine = body.classList.contains('valentine-mode');
-            if (!isValentine) {
-                body.classList.remove('christmas-mode');
+            if (!body.classList.contains('valentine-mode')) {
+                body.classList.remove('christmas-mode', 'starry-mode');
                 stopSnow();
                 christmasToggle.classList.remove('active');
+                starryToggle.classList.remove('active');
             }
             body.classList.toggle('valentine-mode');
             valentineToggle.classList.toggle('active');
@@ -401,6 +726,132 @@
                 heart.style.animationDelay = Math.random() * 3 + 's';
                 heart.style.fontSize = (Math.random() * 30 + 15) + 'px';
                 container.appendChild(heart);
+            }
+        }
+
+        // ==================== TEMA CÉU ESTRELADO (funcionalidade 8) ====================
+        const starryToggle = document.getElementById('starryToggle');
+        starryToggle.addEventListener('click', () => {
+            const body = document.body;
+            if (!body.classList.contains('starry-mode')) {
+                body.classList.remove('christmas-mode', 'valentine-mode');
+                stopSnow();
+                stopHearts();
+                christmasToggle.classList.remove('active');
+                valentineToggle.classList.remove('active');
+            }
+            body.classList.toggle('starry-mode');
+            starryToggle.classList.toggle('active');
+            if (body.classList.contains('starry-mode')) {
+                criarEstrelas();
+            } else {
+                removerEstrelas();
+            }
+        });
+
+        function criarEstrelas() {
+            removerEstrelas();
+            for (let i = 0; i < 100; i++) {
+                const estrela = document.createElement('div');
+                estrela.className = 'estrela';
+                estrela.style.left = Math.random() * 100 + '%';
+                estrela.style.top = Math.random() * 100 + '%';
+                const tamanho = Math.random() * 4 + 1;
+                estrela.style.width = tamanho + 'px';
+                estrela.style.height = tamanho + 'px';
+                estrela.style.animationDelay = Math.random() * 2 + 's';
+                estrela.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(estrela);
+            }
+        }
+        function removerEstrelas() {
+            document.querySelectorAll('.estrela').forEach(e => e.remove());
+        }
+
+        // ==================== CARTA SECRETA (funcionalidade 3) ====================
+        const envelopeBtn = document.getElementById('envelopeBtn');
+        const cartaModal = document.getElementById('cartaModal');
+        const fecharCarta = document.getElementById('fecharCarta');
+        const cartaTexto = document.getElementById('cartaTexto');
+        const cursor = document.getElementById('cursor');
+
+        envelopeBtn.addEventListener('click', () => {
+            cartaModal.classList.add('active');
+            cartaTexto.textContent = '';
+            cursor.style.display = 'inline';
+            digitarCarta(cartaMensagem);
+        });
+
+        fecharCarta.addEventListener('click', () => {
+            cartaModal.classList.remove('active');
+        });
+
+        function digitarCarta(texto) {
+            let i = 0;
+            cartaTexto.textContent = '';
+            const intervalo = setInterval(() => {
+                if (i < texto.length) {
+                    cartaTexto.textContent += texto.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(intervalo);
+                    cursor.style.display = 'none'; // Esconde cursor ao terminar
+                }
+            }, 30);
+        }
+
+        // ==================== FRASE ALEATÓRIA (funcionalidade 12) ====================
+        function initBotaoFraseAleatoria() {
+            // Remove botão existente se já houver
+            const existente = document.getElementById('btnFraseAleatoria');
+            if (existente) existente.remove();
+
+            const btn = document.createElement('button');
+            btn.id = 'btnFraseAleatoria';
+            btn.innerHTML = '<i class="fas fa-dice"></i> Frase aleatória';
+            btn.style.cssText = `
+                background: rgba(255,255,255,0.2);
+                border: 1px solid rgba(255,255,255,0.4);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 25px;
+                cursor: pointer;
+                font-family: 'EB Garamond', serif;
+                font-size: 1em;
+                margin: 20px auto;
+                display: block;
+                transition: all 0.3s ease;
+            `;
+            btn.addEventListener('mouseenter', () => {
+                btn.style.background = 'rgba(255,255,255,0.4)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.background = 'rgba(255,255,255,0.2)';
+            });
+
+            const container = document.getElementById('meus-pensamentos');
+            if (container) {
+                // Insere antes do primeiro parágrafo de pensamentos
+                const primeiroQuote = container.querySelector('.quote');
+                if (primeiroQuote) {
+                    container.insertBefore(btn, primeiroQuote);
+                } else {
+                    container.appendChild(btn);
+                }
+
+                btn.addEventListener('click', () => {
+                    const quotes = container.querySelectorAll('.quote');
+                    if (quotes.length === 0) return;
+                    const indice = Math.floor(Math.random() * quotes.length);
+                    // Remove destaque anterior
+                    quotes.forEach(q => q.style.background = '', q.style.border = '');
+                    // Destaca a frase selecionada
+                    quotes[indice].style.background = 'rgba(255,105,180,0.3)';
+                    quotes[indice].style.borderLeft = '4px solid #ff3366';
+                    quotes[indice].style.transition = 'all 0.5s ease';
+                    // Scroll suave até a frase
+                    quotes[indice].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
             }
         }
     </script>
